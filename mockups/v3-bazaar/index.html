@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayaloka — Bazaar Collage Mockup (V3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --maroon:#A6392C;
+    --maroon-dark:#7E2A20;
+    --navy:#17384A;
+    --navy-dark:#0F262F;
+    --cream:#EFE3C7;
+    --cream-light:#F8F1DE;
+    --paper:#E7D9B8;
+    --gold:#C08A34;
+    --gold-soft:#D9B675;
+    --ink:#241E19;
+    --ink-soft:#5B5148;
+    --radius:2px;
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+  .label{
+    font-family:'Special Elite',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:12px;
+    color:var(--maroon);
+  }
+  .label.on-dark{color:var(--gold-soft);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  section{position:relative;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  /* ---------- textured paper backdrop layer ---------- */
+  .textured{
+    background-image:
+      repeating-linear-gradient(90deg, rgba(36,30,25,.025) 0 1px, transparent 1px 3px),
+      repeating-linear-gradient(0deg, rgba(36,30,25,.02) 0 1px, transparent 1px 3px);
+  }
+
+  /* ---------- flourish divider ---------- */
+  .flourish{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto;}
+  .flourish .dash{width:34px;height:1px;background:currentColor;opacity:.55;}
+  .flourish .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.8;}
+  .flourish.maroon{color:var(--maroon);}
+  .flourish.gold{color:var(--gold-soft);}
+
+  /* ---------- announcement bar ---------- */
+  .announce{
+    background:var(--navy-dark);
+    color:var(--cream);
+    text-align:center;
+    font-family:'Special Elite',monospace;
+    font-size:11.5px;
+    letter-spacing:.12em;
+    padding:9px 12px;
+    text-transform:uppercase;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    background:var(--paper);
+    border-bottom:2px solid var(--maroon);
+    position:sticky;top:0;z-index:50;
+  }
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 0;
+  }
+  .nav-links{display:flex;gap:34px;font-size:14px;font-weight:500;}
+  .nav-links a{position:relative;padding-bottom:4px;}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--maroon);
+    transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .logo{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:700;
+    font-size:30px;
+    letter-spacing:.01em;
+    color:var(--maroon);
+  }
+  .nav-icons{display:flex;gap:22px;align-items:center;}
+  .nav-icons svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.4;cursor:pointer;transition:stroke .2s;}
+  .nav-icons svg:hover{stroke:var(--maroon);}
+  .cart-count{
+    background:var(--maroon);color:var(--cream);
+    font-size:9px;border-radius:50%;
+    width:14px;height:14px;display:flex;align-items:center;justify-content:center;
+    position:relative;top:-8px;left:-9px;font-family:'Inter';font-weight:600;
+  }
+
+  /* ---------- marquee ticker banner (styled as signboard bottom bar) ---------- */
+  .ticker{
+    background:
+      repeating-linear-gradient(-45deg, rgba(255,255,255,.03) 0 10px, transparent 10px 20px),
+      var(--navy);
+    color:var(--gold-soft);
+    overflow:hidden;white-space:nowrap;padding:16px 0;
+    border-top:4px solid var(--maroon);border-bottom:4px solid var(--maroon);
+  }
+  .ticker-track{display:inline-flex;gap:32px;animation:scroll-left 22s linear infinite;}
+  .ticker-track span{font-family:'Special Elite';font-size:14px;letter-spacing:.16em;text-transform:uppercase;}
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){.ticker-track{animation:none;}}
+
+  /* ---------- hero: frame kept, but compact — collage/story pulled up higher ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 50% 0%, rgba(166,57,44,.06), transparent 60%),
+      var(--cream);
+    padding:64px 0 56px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero-frame{
+    max-width:820px;margin:0 auto;
+    border:2px solid var(--maroon);
+    outline:1px solid var(--navy);
+    outline-offset:6px;
+    padding:40px 36px 38px;
+    position:relative;
+    background:
+      repeating-linear-gradient(0deg, rgba(36,30,25,.02) 0 2px, transparent 2px 4px);
+  }
+  .hero-frame::before,.hero-frame::after{
+    content:"";position:absolute;width:9px;height:9px;border-radius:50%;
+    background:var(--maroon);top:-13px;
+  }
+  .hero-frame::before{left:-13px;}
+  .hero-frame::after{right:-13px;}
+  .hero .kicker{
+    font-family:'Special Elite',monospace;
+    font-size:12px;letter-spacing:.22em;color:var(--navy);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(34px,5vw,58px);
+    line-height:1.06;
+    color:var(--maroon);
+    margin-bottom:14px;
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:500;color:var(--navy);
+  }
+  .hero p.sub{
+    max-width:460px;margin:0 auto 22px;
+    color:var(--ink-soft);font-size:15.5px;
+  }
+  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    padding:13px 26px;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:600;border-radius:var(--radius);cursor:pointer;transition:all .25s ease;
+    border:1px solid transparent;font-family:'Inter';
+  }
+  .btn-primary{background:var(--maroon);color:var(--cream-light);}
+  .btn-primary:hover{background:var(--maroon-dark);transform:translateY(-2px);}
+  .btn-outline{border-color:var(--navy);color:var(--navy);background:transparent;}
+  .btn-outline:hover{background:var(--navy);color:var(--cream-light);transform:translateY(-2px);}
+
+  /* ---------- section heading pattern ---------- */
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 44px;}
+  .sec-head .label{display:block;margin-bottom:14px;}
+  .sec-head h2{font-size:clamp(30px,4vw,44px);margin-bottom:16px;}
+  .sec-head p{color:var(--ink-soft);font-size:15.5px;}
+
+  /* ---------- brand story: brought up right after ticker, layered collage ---------- */
+  .story{padding:88px 0 100px;background:var(--cream-light);}
+  .story-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
+  .story-collage{position:relative;aspect-ratio:1/1;}
+  .collage-tile{position:absolute;border:1px solid rgba(36,30,25,.18);box-shadow:0 16px 34px rgba(23,56,74,.2);}
+  .tile-a{width:66%;height:66%;top:0;left:0;background:linear-gradient(135deg,#8f4b3a,#5d2c22);z-index:2;transform:rotate(-2deg);}
+  .tile-b{width:52%;height:52%;bottom:-4%;right:-4%;background:linear-gradient(135deg,#1c4258,#0f262f);z-index:1;transform:rotate(3deg);}
+  .tile-c{width:38%;height:38%;top:22%;left:48%;background:radial-gradient(circle at 40% 30%, #d9b675, #a6392c 70%);z-index:3;border-radius:50%;}
+  .tile-d{width:26%;height:20%;bottom:6%;left:6%;background:var(--gold-soft);z-index:4;transform:rotate(-6deg);border:1px solid rgba(36,30,25,.18);}
+  .story-text h2{font-size:clamp(30px,3.6vw,42px);margin-bottom:22px;line-height:1.12;}
+  .story-text p{color:var(--ink-soft);margin-bottom:16px;font-size:15.5px;max-width:460px;}
+  .story-text .signature{font-family:'Fraunces';font-style:italic;font-size:19px;color:var(--maroon);margin-top:22px;}
+
+  /* ---------- collections: brought up, textured backdrop, layered stamps ---------- */
+  .collections{padding:100px 0;background:var(--paper);position:relative;}
+  .coll-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .coll-card{
+    background:var(--cream-light);border:1px solid rgba(36,30,25,.15);
+    position:relative;overflow:hidden;transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .coll-card:nth-child(odd){transform:rotate(-0.6deg);}
+  .coll-card:nth-child(even){transform:rotate(0.6deg);}
+  .coll-card:hover{transform:translateY(-6px) rotate(0deg);box-shadow:0 22px 38px rgba(23,56,74,.22);}
+  .coll-img{aspect-ratio:4/5;position:relative;overflow:hidden;}
+  .coll-img .ph{width:100%;height:100%;transition:transform .6s ease;}
+  .coll-card:hover .ph{transform:scale(1.06);}
+  .c1 .ph{background:linear-gradient(160deg,#c98a4a,#7e2a20);}
+  .c2 .ph{background:linear-gradient(160deg,#3a6479,#0f262f);}
+  .c3 .ph{background:linear-gradient(160deg,#d9b675,#a6392c);}
+  .c4 .ph{background:linear-gradient(160deg,#8f4b3a,#17384a);}
+  .coll-card .stamp{
+    position:absolute;top:12px;left:12px;background:var(--navy);color:var(--cream);
+    font-family:'Special Elite';font-size:10px;letter-spacing:.1em;padding:5px 9px;text-transform:uppercase;
+    transform:rotate(-4deg);
+  }
+  .coll-body{padding:18px 18px 22px;}
+  .coll-body h3{font-size:19px;margin-bottom:6px;}
+  .coll-body p{font-size:13px;color:var(--ink-soft);margin:0 0 12px;}
+  .coll-body .cta{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--maroon);font-weight:600;}
+
+  /* ---------- philosophy quote ---------- */
+  .philosophy{
+    background:var(--navy);color:var(--cream-light);
+    padding:110px 0;text-align:center;position:relative;
+  }
+  .philosophy::before{
+    content:"✦";position:absolute;top:40px;left:50%;transform:translateX(-50%);
+    color:var(--gold-soft);font-size:26px;
+  }
+  .philosophy blockquote{
+    font-family:'Fraunces';font-style:italic;font-weight:500;
+    font-size:clamp(28px,4.4vw,50px);max-width:820px;margin:0 auto 26px;line-height:1.25;
+  }
+  .philosophy cite{font-style:normal;font-family:'Special Elite';font-size:12px;letter-spacing:.16em;color:var(--gold-soft);text-transform:uppercase;}
+
+  /* ---------- product grid ---------- */
+  .shop{padding:100px 0;background:var(--cream-light);}
+  .shop-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 22px;}
+  .p-card{cursor:pointer;}
+  .p-img{
+    aspect-ratio:1/1.15;background:linear-gradient(155deg,var(--gold-soft),var(--maroon) 75%);
+    position:relative;overflow:hidden;margin-bottom:14px;
+  }
+  .p-card:nth-child(2) .p-img{background:linear-gradient(155deg,#3a6479,#17384a 75%);}
+  .p-card:nth-child(3) .p-img{background:linear-gradient(155deg,#c98a4a,#7e2a20 75%);}
+  .p-card:nth-child(4) .p-img{background:linear-gradient(155deg,#d9b675,#5d2c22 75%);}
+  .p-card:nth-child(5) .p-img{background:linear-gradient(155deg,#8f4b3a,#0f262f 75%);}
+  .p-card:nth-child(6) .p-img{background:linear-gradient(155deg,#b58a4a,#a6392c 75%);}
+  .p-card:nth-child(7) .p-img{background:linear-gradient(155deg,#3a6479,#7e2a20 75%);}
+  .p-card:nth-child(8) .p-img{background:linear-gradient(155deg,#d9b675,#17384a 75%);}
+  .p-img .quick{
+    position:absolute;bottom:0;left:0;right:0;background:rgba(23,56,74,.92);color:var(--cream);
+    text-align:center;padding:12px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+    font-weight:600;transform:translateY(100%);transition:transform .3s ease;
+  }
+  .p-card:hover .quick{transform:translateY(0);}
+  .p-tag{
+    position:absolute;top:10px;left:10px;background:var(--cream-light);color:var(--maroon);
+    font-size:10px;letter-spacing:.08em;padding:4px 8px;font-family:'Special Elite';text-transform:uppercase;
+    transform:rotate(-3deg);
+  }
+  .p-info h3{font-size:15px;font-weight:600;font-family:'Inter';margin-bottom:4px;}
+  .p-info .price{font-size:14px;color:var(--maroon);font-weight:600;}
+  .p-info .price s{color:var(--ink-soft);font-weight:400;margin-right:6px;}
+
+  /* ---------- press marquee ---------- */
+  .press{padding:52px 0;border-top:1px solid rgba(36,30,25,.15);border-bottom:1px solid rgba(36,30,25,.15);}
+  .press-row{display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:30px;opacity:.65;}
+  .press-row span{font-family:'Fraunces';font-style:italic;font-size:20px;}
+
+  /* ---------- newsletter ---------- */
+  .newsletter{padding:110px 0;text-align:center;background:var(--maroon);color:var(--cream-light);}
+  .newsletter h2{font-size:clamp(28px,4vw,42px);margin-bottom:14px;color:var(--cream-light);}
+  .newsletter p{max-width:440px;margin:0 auto 30px;opacity:.9;font-size:15px;}
+  .n-form{display:flex;max-width:420px;margin:0 auto;gap:10px;}
+  .n-form input{
+    flex:1;padding:14px 16px;border:1px solid rgba(248,241,222,.4);background:transparent;
+    color:var(--cream-light);font-family:'Inter';font-size:14px;
+  }
+  .n-form input::placeholder{color:rgba(248,241,222,.6);}
+  .n-form button{
+    background:var(--navy-dark);color:var(--cream);border:none;padding:14px 22px;
+    font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;
+    transition:background .25s;
+  }
+  .n-form button:hover{background:var(--navy);}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy-dark);color:rgba(248,241,222,.75);padding:70px 0 26px;font-size:13.5px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.2fr;gap:36px;margin-bottom:56px;}
+  .foot-grid h4{font-family:'Special Elite';font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);margin-bottom:18px;}
+  .foot-grid ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;}
+  .foot-grid a:hover{color:var(--cream-light);}
+  .foot-logo{font-family:'Fraunces';font-style:italic;font-size:26px;color:var(--cream-light);margin-bottom:14px;display:block;}
+  .foot-bottom{
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
+    border-top:1px solid rgba(248,241,222,.12);padding-top:24px;font-size:12px;
+  }
+
+  @media(max-width:960px){
+    .story-grid{grid-template-columns:1fr;gap:40px;}
+    .coll-grid{grid-template-columns:repeat(2,1fr);}
+    .shop-grid{grid-template-columns:repeat(2,1fr);}
+    .foot-grid{grid-template-columns:repeat(2,1fr);}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">✦ Handcrafted anti-tarnish jewellery &nbsp;·&nbsp; Complimentary shipping over ₹1,999 &nbsp;·&nbsp; Est. 2026 ✦</div>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="logo">Mayaloka</div>
+    <nav class="nav-links">
+      <a href="#">Shop</a>
+      <a href="#">Collections</a>
+      <a href="#">Our Story</a>
+      <a href="#">Journal</a>
+      <a href="#">Care Guide</a>
+    </nav>
+    <div class="nav-icons">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.4 2.4 5 6 5c2 0 3.3 1 4 2.2C10.7 6 12 5 14 5c3.6 0 5.3 3.4 3.5 7.2C19 16.65 12 21 12 21z"/></svg>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20c1.4-3.6 4.2-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></svg>
+      <span style="position:relative;display:inline-flex;">
+        <svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
+        <span class="cart-count">2</span>
+      </span>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-frame reveal">
+      <div class="kicker">Modern treasures · Old Indian magic</div>
+      <h1>Every piece,<br><em>a treasure discovered.</em></h1>
+      <p class="sub">Curated anti-tarnish jewellery presented with the charm and wonder of an old Indian bazaar.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn btn-primary">Explore the Collection</a>
+        <a href="#story" class="btn btn-outline">Our Story</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Gold</span><span>✦</span>
+    <span>Diamond</span><span>✦</span>
+    <span>Silver</span><span>✦</span>
+    <span>Antique</span><span>✦</span>
+    <span>Handcrafted With Trust</span><span>✦</span>
+    <span>Gold</span><span>✦</span>
+    <span>Diamond</span><span>✦</span>
+    <span>Silver</span><span>✦</span>
+    <span>Antique</span><span>✦</span>
+    <span>Handcrafted With Trust</span><span>✦</span>
+  </div>
+</div>
+
+<section class="story textured" id="story">
+  <div class="wrap story-grid">
+    <div class="story-collage reveal">
+      <div class="collage-tile tile-a"></div>
+      <div class="collage-tile tile-b"></div>
+      <div class="collage-tile tile-c"></div>
+      <div class="collage-tile tile-d"></div>
+    </div>
+    <div class="story-text reveal">
+      <span class="label">What is Mayaloka</span>
+      <h2 style="margin-top:14px;">A curated world, not just a jewellery box.</h2>
+      <p>Mayaloka is a curated jewellery brand that blends modern design with the nostalgia of old Indian shopping experiences — the fading signboards, the weathered arches, the bazaars that carry stories within them.</p>
+      <p>Every product, package, and interaction is designed to feel less like a transaction and more like discovering a small treasure worth keeping.</p>
+      <div class="signature">— This isn't just a necklace. This is a Mayaloka piece.</div>
+    </div>
+  </div>
+</section>
+
+<section class="collections textured" id="collections">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label">The Bazaar Edit</span>
+      <h2>Shop by Collection</h2>
+      <p>Four ways into the world of Mayaloka — pick your entry point into the treasure hunt.</p>
+    </div>
+    <div class="coll-grid">
+      <div class="coll-card c1 reveal">
+        <div class="coll-img"><div class="ph"></div><span class="stamp">New</span></div>
+        <div class="coll-body"><h3>Heirloom Reimagined</h3><p>Vintage motifs, modern proportions.</p><span class="cta">Shop the Edit →</span></div>
+      </div>
+      <div class="coll-card c2 reveal">
+        <div class="coll-img"><div class="ph"></div><span class="stamp">Bestseller</span></div>
+        <div class="coll-body"><h3>Antique Gold</h3><p>Warm, weathered, unmistakably rich.</p><span class="cta">Shop the Edit →</span></div>
+      </div>
+      <div class="coll-card c3 reveal">
+        <div class="coll-img"><div class="ph"></div><span class="stamp">Everyday</span></div>
+        <div class="coll-body"><h3>The Daily Wear</h3><p>Anti-tarnish pieces you'll never take off.</p><span class="cta">Shop the Edit →</span></div>
+      </div>
+      <div class="coll-card c4 reveal">
+        <div class="coll-img"><div class="ph"></div><span class="stamp">Limited</span></div>
+        <div class="coll-body"><h3>The Bazaar Find</h3><p>One-of-a-kind statement pieces.</p><span class="cta">Shop the Edit →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap">
+    <blockquote class="reveal">"Modern treasures, wrapped in old Indian magic."</blockquote>
+    <cite>The Mayaloka Promise</cite>
+  </div>
+</section>
+
+<section class="shop" id="shop">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="label">Treasure Finds</span>
+      <h2>New This Season</h2>
+      <p>Handpicked, anti-tarnish, made to stay in rotation.</p>
+    </div>
+    <div class="shop-grid">
+      <div class="p-card reveal"><div class="p-img"><span class="p-tag">New</span><div class="quick">Quick Add</div></div><div class="p-info"><h3>Kintsugi Hoop Earrings</h3><div class="price">₹1,450</div></div></div>
+      <div class="p-card reveal"><div class="p-img"><span class="p-tag">Bestseller</span><div class="quick">Quick Add</div></div><div class="p-info"><h3>Bazaar Layered Necklace</h3><div class="price"><s>₹2,600</s>₹2,100</div></div></div>
+      <div class="p-card reveal"><div class="p-img"><span class="p-tag">Antique</span><div class="quick">Quick Add</div></div><div class="p-info"><h3>Meena Stack Ring</h3><div class="price">₹980</div></div></div>
+      <div class="p-card reveal"><div class="p-img"><div class="quick">Quick Add</div></div><div class="p-info"><h3>Nostalgia Charm Bracelet</h3><div class="price">₹1,750</div></div></div>
+      <div class="p-card reveal"><div class="p-img"><span class="p-tag">Limited</span><div class="quick">Quick Add</div></div><div class="p-info"><h3>Old Bazaar Choker</h3><div class="price">₹3,200</div></div></div>
+      <div class="p-card reveal"><div class="p-img"><div class="quick">Quick Add</div></div><div class="p-info"><h3>Signet Stamp Ring</h3><div class="price">₹1,150</div></div></div>
+      <div class="p-card reveal"><div class="p-img"><span class="p-tag">New</span><div class="quick">Quick Add</div></div><div class="p-info"><h3>Fading Signboard Studs</h3><div class="price">₹890</div></div></div>
+      <div class="p-card reveal"><div class="p-img"><div class="quick">Quick Add</div></div><div class="p-info"><h3>Treasure Trove Anklet</h3><div class="price">₹1,320</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="press">
+  <div class="wrap press-row">
+    <span>as seen in Vogue India</span>
+    <span>Elle</span>
+    <span>Grazia</span>
+    <span>The Established</span>
+  </div>
+</section>
+
+<section class="newsletter">
+  <div class="wrap reveal">
+    <h2>Join the Treasure Circle</h2>
+    <p>First access to new drops, bazaar stories, and an insider's note from the founder — no spam, just discoveries.</p>
+    <form class="n-form" onsubmit="return false;">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="foot-logo">Mayaloka</span>
+        <p style="max-width:240px;opacity:.8;">Timeless beauty. Eternal you. Modern treasures wrapped in old Indian magic.</p>
+      </div>
+      <div><h4>Shop</h4><ul><li><a href="#">All Jewellery</a></li><li><a href="#">Collections</a></li><li><a href="#">Gold</a></li><li><a href="#">Antique</a></li></ul></div>
+      <div><h4>Support</h4><ul><li><a href="#">Shipping Policy</a></li><li><a href="#">Returns & Refunds</a></li><li><a href="#">Care Guide</a></li><li><a href="#">FAQs</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#">Our Story</a></li><li><a href="#">Journal</a></li><li><a href="#">Contact</a></li><li><a href="#">Store Locator</a></li></ul></div>
+      <div><h4>Stay in Touch</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Pinterest</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mayaloka. Handcrafted with trust.</span>
+      <span>Privacy Policy · Terms & Conditions</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
