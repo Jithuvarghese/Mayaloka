@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayaloka — Split-Screen Mockup (V4)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600;1,9..144,700&family=Inter:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --maroon:#A6392C;
+    --maroon-dark:#7E2A20;
+    --navy:#17384A;
+    --navy-dark:#0F262F;
+    --cream:#EFE3C7;
+    --cream-light:#F8F1DE;
+    --paper:#E7D9B8;
+    --gold:#C08A34;
+    --gold-soft:#D9B675;
+    --ink:#241E19;
+    --ink-soft:#5B5148;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream-light);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+  .label{
+    font-family:'Special Elite',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:12px;
+    color:var(--maroon);
+  }
+  .label.on-dark{color:var(--gold-soft);}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  .flourish{display:flex;align-items:center;gap:10px;}
+  .flourish .dash{width:34px;height:1px;background:currentColor;opacity:.55;}
+  .flourish .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.8;}
+  .flourish.maroon{color:var(--maroon);}
+  .flourish.gold{color:var(--gold-soft);}
+
+  /* ---------- split shell ---------- */
+  .shell{display:flex;min-height:100vh;}
+
+  /* ---------- fixed left panel ---------- */
+  .panel-left{
+    position:sticky;top:0;height:100vh;
+    width:38%;min-width:380px;
+    background:var(--navy);color:var(--cream-light);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:44px 48px;
+    border-right:3px solid var(--maroon);
+  }
+  .brand-mark{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:700;
+    font-size:32px;color:var(--cream-light);
+  }
+  .panel-nav{display:flex;flex-direction:column;gap:16px;margin-top:56px;}
+  .panel-nav a{
+    font-size:14px;font-weight:500;color:rgba(248,241,222,.7);
+    display:flex;align-items:center;gap:10px;transition:color .2s;
+  }
+  .panel-nav a:hover{color:var(--gold-soft);}
+  .panel-nav a .idx{font-family:'Special Elite';font-size:11px;color:var(--maroon);opacity:.9;}
+
+  .panel-hero{margin-top:auto;padding-top:40px;}
+  .panel-hero .kicker{
+    font-family:'Special Elite',monospace;font-size:11px;letter-spacing:.2em;
+    color:var(--gold-soft);text-transform:uppercase;margin-bottom:18px;
+  }
+  .panel-hero h1{
+    font-size:clamp(32px,3.2vw,46px);line-height:1.08;color:var(--cream-light);
+    margin-bottom:18px;
+  }
+  .panel-hero h1 em{font-style:italic;font-weight:500;color:var(--gold-soft);}
+  .panel-hero p{color:rgba(248,241,222,.75);font-size:14.5px;max-width:340px;margin-bottom:24px;}
+  .panel-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px;}
+  .btn{
+    padding:13px 24px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;
+    font-weight:600;border-radius:var(--radius);cursor:pointer;transition:all .25s ease;
+    border:1px solid transparent;font-family:'Inter';
+  }
+  .btn-primary{background:var(--maroon);color:var(--cream-light);}
+  .btn-primary:hover{background:var(--maroon-dark);}
+  .btn-outline{border-color:rgba(248,241,222,.5);color:var(--cream-light);background:transparent;}
+  .btn-outline:hover{background:rgba(248,241,222,.1);}
+
+  .panel-footer{margin-top:auto;padding-top:30px;border-top:1px solid rgba(248,241,222,.15);}
+  .panel-footer .badge{
+    font-family:'Special Elite';font-size:10.5px;letter-spacing:.12em;color:rgba(248,241,222,.6);
+    text-transform:uppercase;
+  }
+
+  /* ---------- scrolling right panel ---------- */
+  .panel-right{width:62%;background:var(--cream-light);}
+  .rblock{padding:120px 64px;border-bottom:1px solid rgba(36,30,25,.08);}
+  .rblock:last-child{border-bottom:none;}
+  .rblock .num{
+    font-family:'Special Elite';font-size:11px;letter-spacing:.14em;color:var(--maroon);
+    text-transform:uppercase;margin-bottom:18px;display:block;
+  }
+  .rblock h2{font-size:clamp(28px,2.8vw,38px);margin-bottom:20px;line-height:1.15;}
+  .rblock p.lead{color:var(--ink-soft);font-size:15.5px;max-width:520px;margin-bottom:14px;}
+
+  /* story block */
+  .story-media{
+    aspect-ratio:16/9;position:relative;overflow:hidden;margin-top:36px;
+    background:linear-gradient(135deg,#8f4b3a,#5d2c22);
+  }
+  .story-media .tag{
+    position:absolute;bottom:16px;left:16px;background:var(--navy);color:var(--cream);
+    font-family:'Special Elite';font-size:10px;letter-spacing:.1em;padding:6px 10px;text-transform:uppercase;
+  }
+  .signature{font-family:'Fraunces';font-style:italic;font-size:18px;color:var(--maroon);margin-top:20px;}
+
+  /* collections: horizontal-scroll rail instead of a grid */
+  .rail{display:flex;gap:20px;overflow-x:auto;margin-top:36px;padding-bottom:8px;scroll-snap-type:x mandatory;}
+  .rail::-webkit-scrollbar{height:6px;}
+  .rail::-webkit-scrollbar-thumb{background:rgba(36,30,25,.2);border-radius:4px;}
+  .rail-card{
+    flex:0 0 240px;scroll-snap-align:start;
+    background:var(--paper);border:1px solid rgba(36,30,25,.12);
+  }
+  .rail-img{aspect-ratio:4/5;position:relative;overflow:hidden;}
+  .rail-img .ph{width:100%;height:100%;transition:transform .5s ease;}
+  .rail-card:hover .ph{transform:scale(1.05);}
+  .rc1 .ph{background:linear-gradient(160deg,#c98a4a,#7e2a20);}
+  .rc2 .ph{background:linear-gradient(160deg,#3a6479,#0f262f);}
+  .rc3 .ph{background:linear-gradient(160deg,#d9b675,#a6392c);}
+  .rc4 .ph{background:linear-gradient(160deg,#8f4b3a,#17384a);}
+  .rail-card .stamp{
+    position:absolute;top:10px;left:10px;background:var(--navy);color:var(--cream);
+    font-family:'Special Elite';font-size:9.5px;letter-spacing:.08em;padding:4px 8px;text-transform:uppercase;
+  }
+  .rail-body{padding:14px 16px 18px;}
+  .rail-body h3{font-size:16px;margin-bottom:4px;}
+  .rail-body p{font-size:12.5px;color:var(--ink-soft);margin:0 0 8px;}
+  .rail-body .cta{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--maroon);font-weight:600;}
+
+  /* philosophy: inline pull-quote, not a full-bleed band */
+  .pull-quote{
+    border-left:3px solid var(--maroon);padding-left:28px;margin-top:30px;
+  }
+  .pull-quote blockquote{
+    font-family:'Fraunces';font-style:italic;font-weight:500;
+    font-size:clamp(22px,2.4vw,30px);line-height:1.3;margin:0 0 12px;color:var(--ink);
+  }
+  .pull-quote cite{
+    font-style:normal;font-family:'Special Elite';font-size:11px;letter-spacing:.14em;
+    color:var(--maroon);text-transform:uppercase;
+  }
+
+  /* products: dense 2-col list with inline meta, not a card grid */
+  .plist{margin-top:36px;display:flex;flex-direction:column;}
+  .p-row{
+    display:grid;grid-template-columns:110px 1fr auto;gap:22px;align-items:center;
+    padding:20px 0;border-top:1px solid rgba(36,30,25,.1);
+  }
+  .p-row:last-child{border-bottom:1px solid rgba(36,30,25,.1);}
+  .p-swatch{width:110px;aspect-ratio:1/1;background:linear-gradient(155deg,var(--gold-soft),var(--maroon) 75%);}
+  .p-row:nth-child(2) .p-swatch{background:linear-gradient(155deg,#3a6479,#17384a 75%);}
+  .p-row:nth-child(3) .p-swatch{background:linear-gradient(155deg,#c98a4a,#7e2a20 75%);}
+  .p-row:nth-child(4) .p-swatch{background:linear-gradient(155deg,#d9b675,#5d2c22 75%);}
+  .p-row:nth-child(5) .p-swatch{background:linear-gradient(155deg,#8f4b3a,#0f262f 75%);}
+  .p-row:nth-child(6) .p-swatch{background:linear-gradient(155deg,#b58a4a,#a6392c 75%);}
+  .p-meta h3{font-size:16px;font-weight:600;font-family:'Inter';margin-bottom:5px;}
+  .p-meta .tag-inline{
+    font-family:'Special Elite';font-size:9.5px;letter-spacing:.08em;color:var(--maroon);
+    text-transform:uppercase;
+  }
+  .p-price{font-size:14.5px;color:var(--maroon);font-weight:600;text-align:right;white-space:nowrap;}
+  .p-price s{color:var(--ink-soft);font-weight:400;margin-right:6px;}
+
+  /* press: simple inline row */
+  .press-row{display:flex;gap:34px;flex-wrap:wrap;margin-top:30px;opacity:.6;}
+  .press-row span{font-family:'Fraunces';font-style:italic;font-size:18px;}
+
+  /* newsletter: inline, no full-bleed band */
+  .n-form{display:flex;max-width:420px;gap:0;border-bottom:1px solid var(--ink);margin-top:30px;}
+  .n-form input{
+    flex:1;padding:14px 4px;border:none;background:transparent;
+    color:var(--ink);font-family:'Inter';font-size:14px;
+  }
+  .n-form input::placeholder{color:var(--ink-soft);}
+  .n-form button{
+    background:none;color:var(--maroon);border:none;padding:14px 6px;
+    font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;
+  }
+  .n-form button:hover{opacity:.7;}
+
+  .rfooter{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink-soft);}
+
+  @media(max-width:960px){
+    .shell{flex-direction:column;}
+    .panel-left{position:relative;width:100%;height:auto;min-width:0;border-right:none;border-bottom:3px solid var(--maroon);}
+    .panel-right{width:100%;}
+    .rblock{padding:72px 28px;}
+    .p-row{grid-template-columns:70px 1fr auto;gap:14px;}
+    .p-swatch{width:70px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="panel-left">
+    <div>
+      <div class="brand-mark">Mayaloka</div>
+      <nav class="panel-nav">
+        <a href="#story"><span class="idx">01</span> Our Story</a>
+        <a href="#collections"><span class="idx">02</span> Collections</a>
+        <a href="#philosophy"><span class="idx">03</span> Philosophy</a>
+        <a href="#shop"><span class="idx">04</span> New Arrivals</a>
+        <a href="#journal"><span class="idx">05</span> Press &amp; Journal</a>
+      </nav>
+    </div>
+
+    <div class="panel-hero">
+      <div class="kicker">Modern treasures · Old Indian magic</div>
+      <h1>Every piece,<br><em>a treasure discovered.</em></h1>
+      <p>Curated anti-tarnish jewellery presented with the charm of an old Indian bazaar — nostalgia and modernity on the same shelf.</p>
+      <div class="panel-ctas">
+        <a href="#shop" class="btn btn-primary">Explore the Collection</a>
+        <a href="#story" class="btn btn-outline">Our Story</a>
+      </div>
+      <div class="flourish gold"><span class="dash"></span><span class="dot"></span><span class="dash"></span></div>
+    </div>
+
+    <div class="panel-footer">
+      <span class="badge">Gold · Diamond · Silver · Antique</span>
+    </div>
+  </aside>
+
+  <main class="panel-right">
+
+    <section class="rblock" id="story">
+      <span class="num">01 · What is Mayaloka</span>
+      <h2 class="reveal">A curated world, not just a jewellery box.</h2>
+      <p class="lead reveal">Mayaloka is a curated jewellery brand that blends modern design with the nostalgia of old Indian shopping experiences — the fading signboards, the weathered arches, the bazaars that carry stories within them.</p>
+      <p class="lead reveal">Every product, package, and interaction is designed to feel less like a transaction and more like discovering a small treasure worth keeping.</p>
+      <div class="signature reveal">— This isn't just a necklace. This is a Mayaloka piece.</div>
+      <div class="story-media reveal"><span class="tag">Est. 2026</span></div>
+    </section>
+
+    <section class="rblock" id="collections">
+      <span class="num">02 · The Bazaar Edit</span>
+      <h2 class="reveal">Shop by Collection</h2>
+      <p class="lead reveal">Four ways into the world of Mayoloka — swipe through and pick your entry point into the treasure hunt.</p>
+      <div class="rail reveal">
+        <div class="rail-card rc1">
+          <div class="rail-img"><div class="ph"></div><span class="stamp">New</span></div>
+          <div class="rail-body"><h3>Heirloom Reimagined</h3><p>Vintage motifs, modern proportions.</p><span class="cta">Shop the Edit →</span></div>
+        </div>
+        <div class="rail-card rc2">
+          <div class="rail-img"><div class="ph"></div><span class="stamp">Bestseller</span></div>
+          <div class="rail-body"><h3>Antique Gold</h3><p>Warm, weathered, unmistakably rich.</p><span class="cta">Shop the Edit →</span></div>
+        </div>
+        <div class="rail-card rc3">
+          <div class="rail-img"><div class="ph"></div><span class="stamp">Everyday</span></div>
+          <div class="rail-body"><h3>The Daily Wear</h3><p>Anti-tarnish, never taken off.</p><span class="cta">Shop the Edit →</span></div>
+        </div>
+        <div class="rail-card rc4">
+          <div class="rail-img"><div class="ph"></div><span class="stamp">Limited</span></div>
+          <div class="rail-body"><h3>The Bazaar Find</h3><p>One-of-a-kind statement pieces.</p><span class="cta">Shop the Edit →</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rblock" id="philosophy">
+      <span class="num">03 · The Mayaloka Promise</span>
+      <h2 class="reveal">Philosophy</h2>
+      <div class="pull-quote reveal">
+        <blockquote>"Modern treasures, wrapped in old Indian magic."</blockquote>
+        <cite>The Mayaloka Promise</cite>
+      </div>
+    </section>
+
+    <section class="rblock" id="shop">
+      <span class="num">04 · Treasure Finds</span>
+      <h2 class="reveal">New This Season</h2>
+      <p class="lead reveal">Handpicked, anti-tarnish, made to stay in rotation.</p>
+      <div class="plist reveal">
+        <div class="p-row">
+          <div class="p-swatch"></div>
+          <div class="p-meta"><h3>Kintsugi Hoop Earrings</h3><span class="tag-inline">New</span></div>
+          <div class="p-price">₹1,450</div>
+        </div>
+        <div class="p-row">
+          <div class="p-swatch"></div>
+          <div class="p-meta"><h3>Bazaar Layered Necklace</h3><span class="tag-inline">Bestseller</span></div>
+          <div class="p-price"><s>₹2,600</s>₹2,100</div>
+        </div>
+        <div class="p-row">
+          <div class="p-swatch"></div>
+          <div class="p-meta"><h3>Meena Stack Ring</h3><span class="tag-inline">Antique</span></div>
+          <div class="p-price">₹980</div>
+        </div>
+        <div class="p-row">
+          <div class="p-swatch"></div>
+          <div class="p-meta"><h3>Nostalgia Charm Bracelet</h3></div>
+          <div class="p-price">₹1,750</div>
+        </div>
+        <div class="p-row">
+          <div class="p-swatch"></div>
+          <div class="p-meta"><h3>Old Bazaar Choker</h3><span class="tag-inline">Limited</span></div>
+          <div class="p-price">₹3,200</div>
+        </div>
+        <div class="p-row">
+          <div class="p-swatch"></div>
+          <div class="p-meta"><h3>Signet Stamp Ring</h3></div>
+          <div class="p-price">₹1,150</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rblock" id="journal">
+      <span class="num">05 · Press &amp; Journal</span>
+      <h2 class="reveal">As seen in</h2>
+      <div class="press-row reveal">
+        <span>Vogue India</span>
+        <span>Elle</span>
+        <span>Grazia</span>
+        <span>The Established</span>
+      </div>
+    </section>
+
+    <section class="rblock">
+      <span class="num">Join the Treasure Circle</span>
+      <h2 class="reveal">Stay in the loop</h2>
+      <p class="lead reveal">First access to new drops, bazaar stories, and an insider's note from the founder — no spam, just discoveries.</p>
+      <form class="n-form reveal" onsubmit="return false;">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+
+    <section class="rblock">
+      <div class="rfooter">
+        <span>© 2026 Mayaloka. Handcrafted with trust.</span>
+        <span>Privacy Policy · Terms &amp; Conditions</span>
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
