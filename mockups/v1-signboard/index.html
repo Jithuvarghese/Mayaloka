@@ -60,9 +60,84 @@
   .flourish .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.8;}
   .flourish.maroon{color:var(--maroon);}
   .flourish.gold{color:var(--gold-soft);}
+
+  /* ---------- announcement bar ---------- */
+  .announce{
+    background:var(--navy-dark);
+    color:var(--cream);
+    text-align:center;
+    font-family:'Special Elite',monospace;
+    font-size:11.5px;
+    letter-spacing:.12em;
+    padding:9px 12px;
+    text-transform:uppercase;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    background:var(--cream-light);
+    border-bottom:1px solid rgba(36,30,25,.1);
+    position:sticky;top:0;z-index:50;
+  }
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 0;
+  }
+  .nav-links{display:flex;gap:34px;font-size:14px;font-weight:500;}
+  .nav-links a{position:relative;padding-bottom:4px;}
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--maroon);
+    transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .logo{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:30px;
+    letter-spacing:.01em;
+    color:var(--maroon);
+  }
+  .nav-icons{display:flex;gap:22px;align-items:center;}
+  .nav-icons svg{width:19px;height:19px;stroke:var(--ink);fill:none;stroke-width:1.4;cursor:pointer;transition:stroke .2s;}
+  .nav-icons svg:hover{stroke:var(--maroon);}
+  .cart-count{
+    background:var(--maroon);color:var(--cream);
+    font-size:9px;border-radius:50%;
+    width:14px;height:14px;display:flex;align-items:center;justify-content:center;
+    position:relative;top:-8px;left:-9px;font-family:'Inter';font-weight:600;
+  }
+
+  @media(max-width:960px){
+    .nav-links{display:none;}
+  }
 </style>
 </head>
 <body>
+
+<div class="announce">✦ Handcrafted anti-tarnish jewellery &nbsp;·&nbsp; Complimentary shipping over ₹1,999 &nbsp;·&nbsp; Est. 2026 ✦</div>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="logo">Mayaloka</div>
+    <nav class="nav-links">
+      <a href="#">Shop</a>
+      <a href="#">Collections</a>
+      <a href="#">Our Story</a>
+      <a href="#">Journal</a>
+      <a href="#">Care Guide</a>
+    </nav>
+    <div class="nav-icons">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.8C.7 8.4 2.4 5 6 5c2 0 3.3 1 4 2.2C10.7 6 12 5 14 5c3.6 0 5.3 3.4 3.5 7.2C19 16.65 12 21 12 21z"/></svg>
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20c1.4-3.6 4.2-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></svg>
+      <span style="position:relative;display:inline-flex;">
+        <svg viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg>
+        <span class="cart-count">2</span>
+      </span>
+    </div>
+  </div>
+</header>
 
 </body>
 </html>
