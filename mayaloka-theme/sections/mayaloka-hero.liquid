@@ -1,0 +1,208 @@
+{% liquid
+  assign kicker = section.settings.kicker
+  assign heading = section.settings.heading
+  assign heading_emphasis = section.settings.heading_emphasis
+  assign subtext = section.settings.subtext
+  assign primary_label = section.settings.primary_button_label
+  assign primary_url = section.settings.primary_button_url
+  assign secondary_label = section.settings.secondary_button_label
+  assign secondary_url = section.settings.secondary_button_url
+  assign badge_text = section.settings.badge_text
+%}
+
+<section class="mayaloka-hero">
+  <div class="mayaloka-hero__wrap">
+    <div class="mayaloka-hero__frame">
+      {% if kicker != blank %}
+        <div class="mayaloka-hero__kicker">{{ kicker }}</div>
+      {% endif %}
+      {% if heading != blank or heading_emphasis != blank %}
+        <h1 class="mayaloka-hero__heading">
+          {{ heading }}{% if heading != blank and heading_emphasis != blank %}<br>{% endif %}<em>{{ heading_emphasis }}</em>
+        </h1>
+      {% endif %}
+      {% if subtext != blank %}
+        <p class="mayaloka-hero__subtext">{{ subtext }}</p>
+      {% endif %}
+      <div class="mayaloka-hero__ctas">
+        {% if primary_label != blank %}
+          <a href="{{ primary_url | default: '#' }}" class="mayaloka-btn mayaloka-btn--primary">{{ primary_label }}</a>
+        {% endif %}
+        {% if secondary_label != blank %}
+          <a href="{{ secondary_url | default: '#' }}" class="mayaloka-btn mayaloka-btn--outline">{{ secondary_label }}</a>
+        {% endif %}
+      </div>
+      <div class="mayaloka-flourish">
+        <span class="mayaloka-flourish__dash"></span>
+        <span class="mayaloka-flourish__dot"></span>
+        <span class="mayaloka-flourish__dash"></span>
+      </div>
+      {% if badge_text != blank %}
+        <div class="mayaloka-hero__badge">{{ badge_text }}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .mayaloka-hero {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(166, 57, 44, .05), transparent 60%),
+      var(--mayaloka-cream);
+    padding: 86px 0 70px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .mayaloka-hero__wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .mayaloka-hero__frame {
+    max-width: 920px;
+    margin: 0 auto;
+    border: 2px solid var(--mayaloka-maroon);
+    outline: 1px solid var(--mayaloka-navy);
+    outline-offset: 8px;
+    padding: 56px 40px 52px;
+    position: relative;
+    background: repeating-linear-gradient(0deg, rgba(36, 30, 25, .015) 0 2px, transparent 2px 4px);
+  }
+
+  .mayaloka-hero__frame::before,
+  .mayaloka-hero__frame::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--mayaloka-maroon);
+    top: -14px;
+  }
+
+  .mayaloka-hero__frame::before { left: -14px; }
+  .mayaloka-hero__frame::after { right: -14px; }
+
+  .mayaloka-hero__kicker {
+    font-family: var(--mayaloka-font-label);
+    font-size: 12px;
+    letter-spacing: .22em;
+    color: var(--mayaloka-navy);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .mayaloka-hero__heading {
+    font-family: var(--mayaloka-font-display);
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 74px);
+    line-height: 1.05;
+    color: var(--mayaloka-maroon);
+    margin: 0 0 20px;
+  }
+
+  .mayaloka-hero__heading em {
+    font-style: italic;
+    font-weight: 500;
+    color: var(--mayaloka-navy);
+  }
+
+  .mayaloka-hero__subtext {
+    max-width: 480px;
+    margin: 0 auto 30px;
+    color: var(--mayaloka-ink-soft);
+    font-size: 16.5px;
+  }
+
+  .mayaloka-hero__ctas {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .mayaloka-hero .mayaloka-flourish {
+    margin: 0 auto 14px;
+  }
+
+  .mayaloka-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mayaloka-font-label);
+    font-size: 11px;
+    letter-spacing: .14em;
+    color: var(--mayaloka-navy);
+    text-transform: uppercase;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Mayaloka Hero",
+  "tag": "section",
+  "class": "mayaloka-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Modern treasures · Old Indian magic"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading (roman part)",
+      "default": "Every piece,"
+    },
+    {
+      "type": "text",
+      "id": "heading_emphasis",
+      "label": "Heading (italic part)",
+      "default": "a treasure discovered."
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Curated anti-tarnish jewellery presented with the charm and wonder of an old Indian bazaar — where nostalgia and modernity share the same shelf."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Explore the Collection"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_url",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_url",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Trust badge text",
+      "default": "Gold  ✦  Diamond  ✦  Silver  ✦  Antique"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mayaloka Hero"
+    }
+  ]
+}
+{% endschema %}

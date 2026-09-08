@@ -1,27 +1,107 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "custom_liquid_cTgCAL": {
-      "type": "custom-liquid",
-      "name": "t:names.custom_liquid",
+    "mayaloka_hero": {
+      "type": "mayaloka-hero",
       "settings": {
-        "custom_liquid": "<section class=\"mayaloka-coming-soon\">\n  <div class=\"mayaloka-coming-soon__content\">\n    <img\n      class=\"mayaloka-coming-soon__logo\"\n      src=\"{{ 'logo.png' | asset_url }}\"\n      alt=\"Mayaloka\"\n    >\n <img\n      class=\"mayaloka-coming-soon__tagline\"\n      src=\"{{ 'tagline.png' | asset_url }}\"\n      alt=\"Launching October\"\n    >\n\n  </div>\n</section>\n\n<style>\n  .mayaloka-coming-soon {\n    position: relative;\n    left: 50%;\n    width: 100vw;\n    min-height: 100svh;\n    margin-left: -50vw;\n    overflow: hidden;\n    background-color: #0c1826;\n    background-image:\n      linear-gradient(\n        180deg,\n        rgba(12, 24, 38, 0.05) 0%,\n        rgba(12, 24, 38, 0.16) 50%,\n        rgba(12, 24, 38, 0.38) 100%\n      ),\n      url(\"{{ 'hero.png' | asset_url }}\");\n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;\n  }\n\n  .mayaloka-coming-soon *,\n  .mayaloka-coming-soon *::before,\n  .mayaloka-coming-soon *::after {\n    box-sizing: border-box;\n  }\n\n  .mayaloka-coming-soon__content {\n    position: absolute;\n    top: 11%;\n    left: 6%;\n    display: flex;\n    width: min(38vw, 460px);\n    flex-direction: column;\n    align-items: flex-start;\n  }\n\n  .mayaloka-coming-soon__logo,\n  .mayaloka-coming-soon__tagline {\n    display: block;\n    width: 100%;\n    height: auto;\n    max-width: 100%;\n    animation: mayaloka-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;\n  }\n\n  .mayaloka-coming-soon__logo {\n    max-width: 220px;\n  }\n\n  .mayaloka-coming-soon__tagline {\n    max-width: 430px;\n    margin-top: clamp(85px, 15vh, 180px);\n    animation-delay: 160ms;\n  }\n\n  @keyframes mayaloka-reveal {\n    from {\n      opacity: 0;\n      transform: scale(0.97) translateY(10px);\n    }\n\n    to {\n      opacity: 1;\n      transform: scale(1) translateY(0);\n    }\n  }\n\n  @media screen and (max-width: 768px) {\n    .mayaloka-coming-soon {\n      background-position: 60% center;\n    }\n\n    .mayaloka-coming-soon__content {\n      top: 10%;\n      left: 7%;\n      width: min(55vw, 330px);\n    }\n\n    .mayaloka-coming-soon__logo {\n      max-width: 170px;\n    }\n\n    .mayaloka-coming-soon__tagline {\n      margin-top: clamp(70px, 13vh, 125px);\n    }\n  }\n\n  @media screen and (max-width: 480px) {\n    .mayaloka-coming-soon {\n      background-position: 65% center;\n    }\n\n    .mayaloka-coming-soon__content {\n      top: 9%;\n      left: 7%;\n      width: 62vw;\n    }\n\n    .mayaloka-coming-soon__logo {\n      max-width: 140px;\n    }\n\n    .mayaloka-coming-soon__tagline {\n      max-width: 250px;\n      margin-top: 200px;\n    }\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    .mayaloka-coming-soon__logo,\n    .mayaloka-coming-soon__tagline {\n      animation: none;\n    }\n  }\n</style>",
-        "color_scheme": "",
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "kicker": "Modern treasures · Old Indian magic",
+        "heading": "Every piece,",
+        "heading_emphasis": "a treasure discovered.",
+        "subtext": "Curated anti-tarnish jewellery presented with the charm and wonder of an old Indian bazaar — where nostalgia and modernity share the same shelf.",
+        "primary_button_label": "Explore the Collection",
+        "primary_button_url": "#mayaloka-shop",
+        "secondary_button_label": "Our Story",
+        "secondary_button_url": "#mayaloka-story",
+        "badge_text": "Gold  ✦  Diamond  ✦  Silver  ✦  Antique"
+      }
+    },
+    "mayaloka_ticker": {
+      "type": "mayaloka-ticker",
+      "blocks": {
+        "item_1": { "type": "item", "settings": { "text": "Handcrafted with trust" } },
+        "item_2": { "type": "item", "settings": { "text": "Anti-tarnish, always" } },
+        "item_3": { "type": "item", "settings": { "text": "Every piece feels discovered" } },
+        "item_4": { "type": "item", "settings": { "text": "Modern meets nostalgia" } }
+      },
+      "block_order": ["item_1", "item_2", "item_3", "item_4"]
+    },
+    "mayaloka_story": {
+      "type": "mayaloka-story",
+      "settings": {
+        "label": "What is Mayaloka",
+        "heading": "A curated world, not just a jewellery box.",
+        "paragraph_1": "Mayaloka is a curated jewellery brand that blends modern design with the nostalgia of old Indian shopping experiences — the fading signboards, the weathered arches, the bazaars that carry stories within them.",
+        "paragraph_2": "Every product, package, and interaction is designed to feel less like a transaction and more like discovering a small treasure worth keeping.",
+        "signature": "— This isn't just a necklace. This is a Mayaloka piece."
+      }
+    },
+    "mayaloka_collections": {
+      "type": "mayaloka-collections",
+      "settings": {
+        "label": "The Bazaar Edit",
+        "heading": "Shop by Collection",
+        "subtext": "Four ways into the world of Mayaloka — pick your entry point into the treasure hunt."
+      },
+      "blocks": {
+        "card_1": { "type": "collection_card", "settings": { "title": "Heirloom Reimagined", "description": "Vintage motifs, modern proportions.", "stamp": "New" } },
+        "card_2": { "type": "collection_card", "settings": { "title": "Antique Gold", "description": "Warm, weathered, unmistakably rich.", "stamp": "Bestseller" } },
+        "card_3": { "type": "collection_card", "settings": { "title": "The Daily Wear", "description": "Anti-tarnish pieces you'll never take off.", "stamp": "Everyday" } },
+        "card_4": { "type": "collection_card", "settings": { "title": "The Bazaar Find", "description": "One-of-a-kind statement pieces.", "stamp": "Limited" } }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4"]
+    },
+    "mayaloka_philosophy": {
+      "type": "mayaloka-philosophy",
+      "settings": {
+        "quote": "Modern treasures, wrapped in old Indian magic.",
+        "cite": "The Mayaloka Promise"
+      }
+    },
+    "mayaloka_shop": {
+      "type": "mayaloka-product-grid",
+      "settings": {
+        "label": "Treasure Finds",
+        "heading": "New This Season",
+        "subtext": "Handpicked, anti-tarnish, made to stay in rotation.",
+        "products_to_show": 8
+      },
+      "blocks": {
+        "p1": { "type": "placeholder_product", "settings": { "title": "Kintsugi Hoop Earrings", "price": "₹1,450", "tag": "New" } },
+        "p2": { "type": "placeholder_product", "settings": { "title": "Bazaar Layered Necklace", "price": "₹2,100", "compare_price": "₹2,600", "tag": "Bestseller" } },
+        "p3": { "type": "placeholder_product", "settings": { "title": "Meena Stack Ring", "price": "₹980", "tag": "Antique" } },
+        "p4": { "type": "placeholder_product", "settings": { "title": "Nostalgia Charm Bracelet", "price": "₹1,750" } },
+        "p5": { "type": "placeholder_product", "settings": { "title": "Old Bazaar Choker", "price": "₹3,200", "tag": "Limited" } },
+        "p6": { "type": "placeholder_product", "settings": { "title": "Signet Stamp Ring", "price": "₹1,150" } },
+        "p7": { "type": "placeholder_product", "settings": { "title": "Fading Signboard Studs", "price": "₹890", "tag": "New" } },
+        "p8": { "type": "placeholder_product", "settings": { "title": "Treasure Trove Anklet", "price": "₹1,320" } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"]
+    },
+    "mayaloka_press": {
+      "type": "mayaloka-press",
+      "blocks": {
+        "press_1": { "type": "press_item", "settings": { "text": "as seen in Vogue India" } },
+        "press_2": { "type": "press_item", "settings": { "text": "Elle" } },
+        "press_3": { "type": "press_item", "settings": { "text": "Grazia" } },
+        "press_4": { "type": "press_item", "settings": { "text": "The Established" } }
+      },
+      "block_order": ["press_1", "press_2", "press_3", "press_4"]
+    },
+    "mayaloka_newsletter": {
+      "type": "mayaloka-newsletter",
+      "settings": {
+        "heading": "Join the Treasure Circle",
+        "subtext": "First access to new drops, bazaar stories, and an insider's note from the founder — no spam, just discoveries."
       }
     }
   },
   "order": [
-    "custom_liquid_cTgCAL"
+    "mayaloka_hero",
+    "mayaloka_ticker",
+    "mayaloka_story",
+    "mayaloka_collections",
+    "mayaloka_philosophy",
+    "mayaloka_shop",
+    "mayaloka_press",
+    "mayaloka_newsletter"
   ]
 }

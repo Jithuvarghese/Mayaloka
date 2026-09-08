@@ -1,0 +1,61 @@
+<section class="mayaloka-press">
+  <div class="mayaloka-press__wrap">
+    {% for block in section.blocks %}
+      <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+    {% endfor %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .mayaloka-press {
+    padding: 52px 0;
+    border-top: 1px solid rgba(36, 30, 25, .12);
+    border-bottom: 1px solid rgba(36, 30, 25, .12);
+  }
+
+  .mayaloka-press__wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    opacity: .65;
+  }
+
+  .mayaloka-press__wrap span {
+    font-family: var(--mayaloka-font-display);
+    font-style: italic;
+    font-size: 20px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Mayaloka Press",
+  "tag": "section",
+  "class": "mayaloka-section",
+  "blocks": [
+    {
+      "type": "press_item",
+      "name": "Press item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "as seen in Vogue India" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mayaloka Press",
+      "blocks": [
+        { "type": "press_item", "settings": { "text": "as seen in Vogue India" } },
+        { "type": "press_item", "settings": { "text": "Elle" } },
+        { "type": "press_item", "settings": { "text": "Grazia" } },
+        { "type": "press_item", "settings": { "text": "The Established" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

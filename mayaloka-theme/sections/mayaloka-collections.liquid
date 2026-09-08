@@ -1,0 +1,227 @@
+{% liquid
+  assign label = section.settings.label
+  assign heading = section.settings.heading
+  assign subtext = section.settings.subtext
+%}
+
+<section class="mayaloka-collections">
+  <div class="mayaloka-collections__wrap">
+    <div class="mayaloka-sec-head">
+      {% if label != blank %}
+        <span class="mayaloka-label">{{ label }}</span>
+      {% endif %}
+      {% if heading != blank %}
+        <h2>{{ heading }}</h2>
+      {% endif %}
+      {% if subtext != blank %}
+        <p>{{ subtext }}</p>
+      {% endif %}
+    </div>
+    <div class="mayaloka-collections__grid">
+      {% for block in section.blocks %}
+        {% liquid
+          assign collection = block.settings.collection
+          assign title = block.settings.title
+          assign description = block.settings.description
+          assign stamp = block.settings.stamp
+          assign swatch_index = forloop.index0 | modulo: 4 | plus: 1
+        %}
+        <a
+          href="{% if collection != blank %}{{ collection.url }}{% else %}#{% endif %}"
+          class="mayaloka-coll-card mayaloka-coll-card--c{{ swatch_index }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="mayaloka-coll-card__img">
+            {% if collection != blank and collection.featured_image != blank %}
+              {{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'mayaloka-coll-card__photo' }}
+            {% else %}
+              <div class="mayaloka-coll-card__ph"></div>
+            {% endif %}
+            {% if stamp != blank %}
+              <span class="mayaloka-coll-card__stamp">{{ stamp }}</span>
+            {% endif %}
+          </div>
+          <div class="mayaloka-coll-card__body">
+            <h3>{{ title }}</h3>
+            <p>{{ description }}</p>
+            <span class="mayaloka-coll-card__cta">Shop the Edit →</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .mayaloka-collections {
+    padding: 100px 0;
+    background: var(--mayaloka-paper);
+  }
+
+  .mayaloka-collections__wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .mayaloka-collections__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+
+  .mayaloka-coll-card {
+    display: block;
+    background: var(--mayaloka-cream-light);
+    border: 1px solid rgba(36, 30, 25, .12);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform .35s ease, box-shadow .35s ease;
+  }
+
+  .mayaloka-coll-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 34px rgba(23, 56, 74, .18);
+  }
+
+  .mayaloka-coll-card__img {
+    aspect-ratio: 4 / 5;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mayaloka-coll-card__ph,
+  .mayaloka-coll-card__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease;
+  }
+
+  .mayaloka-coll-card:hover .mayaloka-coll-card__ph,
+  .mayaloka-coll-card:hover .mayaloka-coll-card__photo {
+    transform: scale(1.06);
+  }
+
+  .mayaloka-coll-card--c1 .mayaloka-coll-card__ph { background: linear-gradient(160deg, #c98a4a, #7e2a20); }
+  .mayaloka-coll-card--c2 .mayaloka-coll-card__ph { background: linear-gradient(160deg, #3a6479, #0f262f); }
+  .mayaloka-coll-card--c3 .mayaloka-coll-card__ph { background: linear-gradient(160deg, #d9b675, #a6392c); }
+  .mayaloka-coll-card--c4 .mayaloka-coll-card__ph { background: linear-gradient(160deg, #8f4b3a, #17384a); }
+
+  .mayaloka-coll-card__stamp {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--mayaloka-navy);
+    color: var(--mayaloka-cream);
+    font-family: var(--mayaloka-font-label);
+    font-size: 10px;
+    letter-spacing: .1em;
+    padding: 5px 9px;
+    text-transform: uppercase;
+  }
+
+  .mayaloka-coll-card__body {
+    padding: 18px 18px 22px;
+  }
+
+  .mayaloka-coll-card__body h3 {
+    font-family: var(--mayaloka-font-display);
+    font-weight: 600;
+    font-size: 19px;
+    margin: 0 0 6px;
+    color: var(--mayaloka-ink);
+  }
+
+  .mayaloka-coll-card__body p {
+    font-size: 13px;
+    color: var(--mayaloka-ink-soft);
+    margin: 0 0 12px;
+  }
+
+  .mayaloka-coll-card__cta {
+    font-family: var(--mayaloka-font-body);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--mayaloka-maroon);
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 960px) {
+    .mayaloka-collections__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Mayaloka Collections",
+  "tag": "section",
+  "class": "mayaloka-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "The Bazaar Edit"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop by Collection"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Four ways into the world of Mayaloka — pick your entry point into the treasure hunt."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection (optional — links card, uses its image if set)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Heirloom Reimagined"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description",
+          "default": "Vintage motifs, modern proportions."
+        },
+        {
+          "type": "text",
+          "id": "stamp",
+          "label": "Stamp label",
+          "default": "New"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mayaloka Collections",
+      "blocks": [
+        { "type": "collection_card", "settings": { "title": "Heirloom Reimagined", "description": "Vintage motifs, modern proportions.", "stamp": "New" } },
+        { "type": "collection_card", "settings": { "title": "Antique Gold", "description": "Warm, weathered, unmistakably rich.", "stamp": "Bestseller" } },
+        { "type": "collection_card", "settings": { "title": "The Daily Wear", "description": "Anti-tarnish pieces you'll never take off.", "stamp": "Everyday" } },
+        { "type": "collection_card", "settings": { "title": "The Bazaar Find", "description": "One-of-a-kind statement pieces.", "stamp": "Limited" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

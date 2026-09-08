@@ -1,0 +1,87 @@
+{% liquid
+  assign quote = section.settings.quote
+  assign cite = section.settings.cite
+%}
+
+<section class="mayaloka-philosophy">
+  <div class="mayaloka-philosophy__wrap">
+    {% if quote != blank %}
+      <blockquote>&ldquo;{{ quote }}&rdquo;</blockquote>
+    {% endif %}
+    {% if cite != blank %}
+      <cite>{{ cite }}</cite>
+    {% endif %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .mayaloka-philosophy {
+    background: var(--mayaloka-navy);
+    color: var(--mayaloka-cream-light);
+    padding: 120px 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .mayaloka-philosophy::before {
+    content: "✦";
+    position: absolute;
+    top: 44px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--mayaloka-gold-soft);
+    font-size: 26px;
+  }
+
+  .mayaloka-philosophy__wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .mayaloka-philosophy blockquote {
+    font-family: var(--mayaloka-font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(28px, 4.4vw, 50px);
+    max-width: 820px;
+    margin: 0 auto 26px;
+    line-height: 1.25;
+  }
+
+  .mayaloka-philosophy cite {
+    font-style: normal;
+    font-family: var(--mayaloka-font-label);
+    font-size: 12px;
+    letter-spacing: .16em;
+    color: var(--mayaloka-gold-soft);
+    text-transform: uppercase;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Mayaloka Philosophy",
+  "tag": "section",
+  "class": "mayaloka-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "quote",
+      "label": "Quote",
+      "default": "Modern treasures, wrapped in old Indian magic."
+    },
+    {
+      "type": "text",
+      "id": "cite",
+      "label": "Citation",
+      "default": "The Mayaloka Promise"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mayaloka Philosophy"
+    }
+  ]
+}
+{% endschema %}

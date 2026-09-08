@@ -1,0 +1,83 @@
+{% liquid
+  assign items = section.blocks
+%}
+
+<div class="mayaloka-ticker">
+  <div class="mayaloka-ticker__track">
+    {% for block in items %}
+      <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span><span>✦</span>
+    {% endfor %}
+    {% for block in items %}
+      <span aria-hidden="true">{{ block.settings.text }}</span><span aria-hidden="true">✦</span>
+    {% endfor %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .mayaloka-ticker {
+    background: var(--mayaloka-navy);
+    color: var(--mayaloka-gold-soft);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 14px 0;
+    border-top: 3px solid var(--mayaloka-maroon);
+    border-bottom: 3px solid var(--mayaloka-maroon);
+  }
+
+  .mayaloka-ticker__track {
+    display: inline-flex;
+    gap: 40px;
+    animation: mayaloka-scroll-left 26s linear infinite;
+  }
+
+  .mayaloka-ticker__track span {
+    font-family: var(--mayaloka-font-label);
+    font-size: 13px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+  }
+
+  @keyframes mayaloka-scroll-left {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mayaloka-ticker__track {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Mayaloka Ticker",
+  "tag": "div",
+  "class": "mayaloka-section",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Ticker item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Handcrafted with trust"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mayaloka Ticker",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Handcrafted with trust" } },
+        { "type": "item", "settings": { "text": "Anti-tarnish, always" } },
+        { "type": "item", "settings": { "text": "Every piece feels discovered" } },
+        { "type": "item", "settings": { "text": "Modern meets nostalgia" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

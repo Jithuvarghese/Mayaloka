@@ -1,0 +1,144 @@
+{%- doc -%}
+  Design tokens for the custom Mayaloka homepage sections (mayaloka-*.liquid).
+  Colors match Demo3.png (the V3 bazaar-collage mockup) exactly.
+{%- enddoc -%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
+  rel="stylesheet"
+>
+<style>
+  :root {
+    --mayaloka-maroon: #A6392C;
+    --mayaloka-maroon-dark: #7E2A20;
+    --mayaloka-navy: #17384A;
+    --mayaloka-navy-dark: #0F262F;
+    --mayaloka-cream: #EFE3C7;
+    --mayaloka-cream-light: #F8F1DE;
+    --mayaloka-paper: #E7D9B8;
+    --mayaloka-gold: #C08A34;
+    --mayaloka-gold-soft: #D9B675;
+    --mayaloka-ink: #241E19;
+    --mayaloka-ink-soft: #5B5148;
+    --mayaloka-font-display: var(--font-heading--family), serif;
+    --mayaloka-font-label: 'Special Elite', monospace;
+    --mayaloka-font-body: var(--font-body--family), sans-serif;
+  }
+
+  .mayaloka-section * {
+    box-sizing: border-box;
+  }
+
+  .mayaloka-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .mayaloka-flourish__dash {
+    width: 34px;
+    height: 1px;
+    background: var(--mayaloka-maroon);
+    opacity: .55;
+  }
+
+  .mayaloka-flourish__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--mayaloka-maroon);
+    opacity: .8;
+  }
+
+  .mayaloka-btn {
+    display: inline-block;
+    padding: 14px 30px;
+    font-family: var(--mayaloka-font-body);
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all .25s ease;
+    border: 1px solid transparent;
+    text-decoration: none;
+  }
+
+  .mayaloka-btn--primary {
+    background: var(--mayaloka-maroon);
+    color: var(--mayaloka-cream-light);
+  }
+
+  .mayaloka-btn--primary:hover {
+    background: var(--mayaloka-maroon-dark);
+    transform: translateY(-2px);
+  }
+
+  .mayaloka-btn--outline {
+    border-color: var(--mayaloka-navy);
+    color: var(--mayaloka-navy);
+    background: transparent;
+  }
+
+  .mayaloka-btn--outline:hover {
+    background: var(--mayaloka-navy);
+    color: var(--mayaloka-cream-light);
+    transform: translateY(-2px);
+  }
+
+  .mayaloka-label {
+    font-family: var(--mayaloka-font-label);
+    text-transform: uppercase;
+    letter-spacing: .16em;
+    font-size: 12px;
+    color: var(--mayaloka-maroon);
+  }
+
+  .mayaloka-sec-head {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 52px;
+  }
+
+  .mayaloka-sec-head .mayaloka-label {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .mayaloka-sec-head h2 {
+    font-family: var(--mayaloka-font-display);
+    font-weight: 600;
+    font-size: clamp(30px, 4vw, 44px);
+    margin: 0 0 16px;
+    color: var(--mayaloka-ink);
+  }
+
+  .mayaloka-sec-head p {
+    color: var(--mayaloka-ink-soft);
+    font-size: 15.5px;
+    margin: 0;
+  }
+
+  .mayaloka-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+
+  .mayaloka-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mayaloka-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+<script src="{{ 'mayaloka-reveal.js' | asset_url }}" defer></script>

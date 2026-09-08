@@ -1,0 +1,135 @@
+{% liquid
+  assign heading = section.settings.heading
+  assign subtext = section.settings.subtext
+%}
+
+<section class="mayaloka-newsletter">
+  <div class="mayaloka-newsletter__wrap">
+    {% if heading != blank %}
+      <h2>{{ heading }}</h2>
+    {% endif %}
+    {% if subtext != blank %}
+      <p>{{ subtext }}</p>
+    {% endif %}
+    {% form 'customer', id: 'MayalokaNewsletterForm', class: 'mayaloka-n-form' %}
+      {% if form.posted_successfully? %}
+        <p class="mayaloka-n-form__success">Thank you for subscribing.</p>
+      {% else %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input
+          type="email"
+          name="contact[email]"
+          id="MayalokaNewsletterEmail"
+          placeholder="Your email address"
+          required
+        >
+        <button type="submit">Subscribe</button>
+        {% if form.errors %}
+          <p class="mayaloka-n-form__error">{{ form.errors.messages['email'] }}</p>
+        {% endif %}
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .mayaloka-newsletter {
+    padding: 110px 0;
+    text-align: center;
+    background: var(--mayaloka-maroon);
+    color: var(--mayaloka-cream-light);
+  }
+
+  .mayaloka-newsletter__wrap {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .mayaloka-newsletter h2 {
+    font-family: var(--mayaloka-font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 42px);
+    margin: 0 0 14px;
+    color: var(--mayaloka-cream-light);
+  }
+
+  .mayaloka-newsletter p {
+    max-width: 440px;
+    margin: 0 auto 30px;
+    opacity: .9;
+    font-size: 15px;
+  }
+
+  .mayaloka-n-form {
+    display: flex;
+    max-width: 420px;
+    margin: 0 auto;
+    gap: 10px;
+  }
+
+  .mayaloka-n-form input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid rgba(248, 241, 222, .4);
+    background: transparent;
+    color: var(--mayaloka-cream-light);
+    font-family: var(--mayaloka-font-body);
+    font-size: 14px;
+  }
+
+  .mayaloka-n-form input::placeholder {
+    color: rgba(248, 241, 222, .6);
+  }
+
+  .mayaloka-n-form button {
+    background: var(--mayaloka-navy-dark);
+    color: var(--mayaloka-cream);
+    border: none;
+    padding: 14px 22px;
+    font-family: var(--mayaloka-font-body);
+    font-size: 12px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .25s;
+  }
+
+  .mayaloka-n-form button:hover {
+    background: var(--mayaloka-navy);
+  }
+
+  .mayaloka-n-form__success,
+  .mayaloka-n-form__error {
+    margin: 0;
+    font-size: 14px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Mayaloka Newsletter",
+  "tag": "section",
+  "class": "mayaloka-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the Treasure Circle"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "First access to new drops, bazaar stories, and an insider's note from the founder — no spam, just discoveries."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mayaloka Newsletter"
+    }
+  ]
+}
+{% endschema %}
