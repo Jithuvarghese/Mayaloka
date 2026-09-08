@@ -1,4 +1,4 @@
-# Mayaloka — Shopify Build Plan (based on demo3 / V3 Bazaar Collage)
+g# Mayaloka — Shopify Build Plan (based on demo3 / V3 Bazaar Collage)
 
 **Status:** Planning document. Nothing below has been implemented yet.
 **Base variant:** `demo-v3` (bazaar collage-forward) is the design direction being carried into the real Shopify build.
@@ -136,8 +136,9 @@ Most of these are lightweight Liquid templates once Phase 1's component patterns
 
 ## 5. Open questions before implementation starts
 
-- [x] Palette — only navy→sky blue changes; maroon/gold/cream stay as-is. *(Confirmed.)*
-- [ ] Confirm Playfair Display replaces Fraunces for all headings/logo — and whether Special Elite stays for labels/stamps
+- [x] Palette — only navy→sky blue changes; maroon/gold/cream stay as-is. *(Confirmed against the HTML mockups. Superseded below for the real Shopify build.)*
+- [x] **Real Shopify theme palette (revised):** the live theme's actual color settings don't contain a navy token to swap — the blue seen on the current landing page is part of the hero photo, not a CSS/theme variable. Decision: apply the 4-color palette (maroon `#801F1F`, sky blue `#75C5F4`, gold `#C5B069`, white/cream) to *new* elements as they're built (header nav colors, Mombatti section, sidebar) rather than "swapping" something that doesn't exist yet.
+- [x] Playfair Display — applied to the `heading` font role in `config/settings_data.json` (`type_heading_font`, drives h1–h4). `subheading`/`body`/`accent` roles left on Inknut Antiqua for now, unless told otherwise.
 - [x] Mombatti — same-store, sellable, own nav section. *(Confirmed.)*
 - [ ] Store Locator — is there a physical store, or should this be dropped from Phase 2?
 - [ ] Shopify plan tier — you have an account + landing page already; confirm current plan tier (Basic is sufficient; Plus only needed for fully custom checkout)
