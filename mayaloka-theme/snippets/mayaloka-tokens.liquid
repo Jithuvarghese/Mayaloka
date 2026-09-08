@@ -140,5 +140,49 @@
       transition: none;
     }
   }
+
+  /* ---------- header brand overrides (match Demo3.png) ---------- */
+  .header-logo {
+    --font-family: var(--font-heading--family) !important;
+    --font-style: italic !important;
+    --font-weight: 600 !important;
+    font-size: 28px !important;
+    color: var(--mayaloka-maroon) !important;
+    letter-spacing: 0.01em;
+  }
+
+  .menu-list__link {
+    font-family: var(--mayaloka-font-label) !important;
+    letter-spacing: 0.1em !important;
+    font-size: 12px !important;
+  }
+
+  /* ---------- mobile drawer polish (professional, Milk/Tanishq-style minimal) ---------- */
+  .menu-drawer {
+    border-right: 1px solid var(--mayaloka-ink-soft, rgba(36, 30, 25, .12));
+  }
+
+  .menu-drawer__menu-item--mainlist {
+    font-family: var(--mayaloka-font-body) !important;
+    font-size: 15px !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase;
+    font-weight: 500 !important;
+  }
+
+  .menu-drawer__menu-item--child,
+  .menu-drawer__menu-item--parent {
+    font-family: var(--mayaloka-font-body) !important;
+    letter-spacing: 0.02em;
+  }
+
+  .menu-drawer__close-button,
+  .header__icon--summary {
+    color: var(--mayaloka-maroon);
+  }
+
+  .menu-drawer__list-item--divider {
+    border-block-end-color: rgba(36, 30, 25, .1) !important;
+  }
 </style>
 <script src="{{ 'mayaloka-reveal.js' | asset_url }}" defer></script>
