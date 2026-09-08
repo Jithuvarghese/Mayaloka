@@ -27,7 +27,7 @@
           assign swatch_index = forloop.index0 | modulo: 4 | plus: 1
         %}
         <a
-          href="{% if collection != blank %}{{ collection.url }}{% else %}#{% endif %}"
+          href="{% if collection != blank %}{{ collection.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"
           class="mayaloka-coll-card mayaloka-coll-card--c{{ swatch_index }}"
           {{ block.shopify_attributes }}
         >

@@ -50,13 +50,16 @@
           {% liquid
             assign swatch_index = forloop.index0 | modulo: 8 | plus: 1
           %}
-          <div class="mayaloka-p-card mayaloka-p-card--s{{ swatch_index }}" {{ block.shopify_attributes }}>
+          <a
+            href="{{ routes.all_products_collection_url }}"
+            class="mayaloka-p-card mayaloka-p-card--s{{ swatch_index }}"
+            {{ block.shopify_attributes }}
+          >
             <div class="mayaloka-p-card__img">
               <div class="mayaloka-p-card__ph"></div>
               {% if block.settings.tag != blank %}
                 <span class="mayaloka-p-tag">{{ block.settings.tag }}</span>
               {% endif %}
-              <div class="mayaloka-p-card__quick">Quick Add</div>
             </div>
             <div class="mayaloka-p-card__info">
               <h3>{{ block.settings.title }}</h3>
@@ -68,7 +71,7 @@
                 {% endif %}
               </div>
             </div>
-          </div>
+          </a>
         {% endfor %}
       {% endif %}
     </div>

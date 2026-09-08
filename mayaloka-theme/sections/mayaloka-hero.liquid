@@ -26,10 +26,10 @@
       {% endif %}
       <div class="mayaloka-hero__ctas">
         {% if primary_label != blank %}
-          <a href="{{ primary_url | default: '#' }}" class="mayaloka-btn mayaloka-btn--primary">{{ primary_label }}</a>
+          <a href="{{ primary_url | default: routes.all_products_collection_url }}" class="mayaloka-btn mayaloka-btn--primary">{{ primary_label }}</a>
         {% endif %}
         {% if secondary_label != blank %}
-          <a href="{{ secondary_url | default: '#' }}" class="mayaloka-btn mayaloka-btn--outline">{{ secondary_label }}</a>
+          <a href="{{ secondary_url | default: '#mayaloka-story' }}" class="mayaloka-btn mayaloka-btn--outline">{{ secondary_label }}</a>
         {% endif %}
       </div>
       <div class="mayaloka-flourish">
