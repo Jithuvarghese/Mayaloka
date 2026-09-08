@@ -160,6 +160,15 @@
   /* ---------- mobile drawer polish (professional, Milk/Tanishq-style minimal) ---------- */
   .menu-drawer {
     border-right: 1px solid var(--mayaloka-ink-soft, rgba(36, 30, 25, .12));
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .menu-drawer img,
+  .menu-drawer .resource-card__image,
+  .menu-drawer__link-image {
+    max-width: 100%;
+    object-fit: cover;
   }
 
   .menu-drawer__menu-item--mainlist {
