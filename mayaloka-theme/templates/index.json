@@ -1,75 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
-      ],
+    "custom_liquid_cTgCAL": {
+      "type": "custom-liquid",
+      "name": "t:names.custom_liquid",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Featured products",
-        "heading_size": "h2",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "2",
-        "padding_top": 44,
-        "padding_bottom": 36
+        "custom_liquid": "<section class=\"mayaloka-coming-soon\">\n  <div class=\"mayaloka-coming-soon__content\">\n    <img\n      class=\"mayaloka-coming-soon__logo\"\n      src=\"{{ 'logo.png' | asset_url }}\"\n      alt=\"Mayaloka\"\n    >\n <img\n      class=\"mayaloka-coming-soon__tagline\"\n      src=\"{{ 'tagline.png' | asset_url }}\"\n      alt=\"Launching October\"\n    >\n\n  </div>\n</section>\n\n<style>\n  .mayaloka-coming-soon {\n    position: relative;\n    left: 50%;\n    width: 100vw;\n    min-height: 100svh;\n    margin-left: -50vw;\n    overflow: hidden;\n    background-color: #0c1826;\n    background-image:\n      linear-gradient(\n        180deg,\n        rgba(12, 24, 38, 0.05) 0%,\n        rgba(12, 24, 38, 0.16) 50%,\n        rgba(12, 24, 38, 0.38) 100%\n      ),\n      url(\"{{ 'hero.png' | asset_url }}\");\n    background-repeat: no-repeat;\n    background-position: center center;\n    background-size: cover;\n  }\n\n  .mayaloka-coming-soon *,\n  .mayaloka-coming-soon *::before,\n  .mayaloka-coming-soon *::after {\n    box-sizing: border-box;\n  }\n\n  .mayaloka-coming-soon__content {\n    position: absolute;\n    top: 11%;\n    left: 6%;\n    display: flex;\n    width: min(38vw, 460px);\n    flex-direction: column;\n    align-items: flex-start;\n  }\n\n  .mayaloka-coming-soon__logo,\n  .mayaloka-coming-soon__tagline {\n    display: block;\n    width: 100%;\n    height: auto;\n    max-width: 100%;\n    animation: mayaloka-reveal 900ms cubic-bezier(0.22, 1, 0.36, 1) both;\n  }\n\n  .mayaloka-coming-soon__logo {\n    max-width: 220px;\n  }\n\n  .mayaloka-coming-soon__tagline {\n    max-width: 430px;\n    margin-top: clamp(85px, 15vh, 180px);\n    animation-delay: 160ms;\n  }\n\n  @keyframes mayaloka-reveal {\n    from {\n      opacity: 0;\n      transform: scale(0.97) translateY(10px);\n    }\n\n    to {\n      opacity: 1;\n      transform: scale(1) translateY(0);\n    }\n  }\n\n  @media screen and (max-width: 768px) {\n    .mayaloka-coming-soon {\n      background-position: 60% center;\n    }\n\n    .mayaloka-coming-soon__content {\n      top: 10%;\n      left: 7%;\n      width: min(55vw, 330px);\n    }\n\n    .mayaloka-coming-soon__logo {\n      max-width: 170px;\n    }\n\n    .mayaloka-coming-soon__tagline {\n      margin-top: clamp(70px, 13vh, 125px);\n    }\n  }\n\n  @media screen and (max-width: 480px) {\n    .mayaloka-coming-soon {\n      background-position: 65% center;\n    }\n\n    .mayaloka-coming-soon__content {\n      top: 9%;\n      left: 7%;\n      width: 62vw;\n    }\n\n    .mayaloka-coming-soon__logo {\n      max-width: 140px;\n    }\n\n    .mayaloka-coming-soon__tagline {\n      max-width: 250px;\n      margin-top: 200px;\n    }\n  }\n\n  @media (prefers-reduced-motion: reduce) {\n    .mayaloka-coming-soon__logo,\n    .mayaloka-coming-soon__tagline {\n      animation: none;\n    }\n  }\n</style>",
+        "color_scheme": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
   "order": [
-    "image_banner",
-    "featured_collection"
+    "custom_liquid_cTgCAL"
   ]
 }
