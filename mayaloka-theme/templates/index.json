@@ -1,8 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "mayaloka_hero": {
       "type": "mayaloka-hero",
       "settings": {
+        "hero_image": "shopify://shop_images/landing_page_pic.png",
         "kicker": "Modern treasures · Old Indian magic",
         "heading": "Every piece,",
         "heading_emphasis": "a treasure discovered.",
@@ -17,12 +27,38 @@
     "mayaloka_ticker": {
       "type": "mayaloka-ticker",
       "blocks": {
-        "item_1": { "type": "item", "settings": { "text": "Handcrafted with trust" } },
-        "item_2": { "type": "item", "settings": { "text": "Anti-tarnish, always" } },
-        "item_3": { "type": "item", "settings": { "text": "Every piece feels discovered" } },
-        "item_4": { "type": "item", "settings": { "text": "Modern meets nostalgia" } }
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "text": "Handcrafted with trust"
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "text": "Anti-tarnish, always"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "text": "Every piece feels discovered"
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "text": "Modern meets nostalgia"
+          }
+        }
       },
-      "block_order": ["item_1", "item_2", "item_3", "item_4"]
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4"
+      ],
+      "settings": {}
     },
     "mayaloka_story": {
       "type": "mayaloka-story",
@@ -36,18 +72,55 @@
     },
     "mayaloka_collections": {
       "type": "mayaloka-collections",
+      "blocks": {
+        "card_1": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "title": "Heirloom Reimagined",
+            "description": "Vintage motifs, modern proportions.",
+            "stamp": "New"
+          }
+        },
+        "card_2": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "title": "Antique Gold",
+            "description": "Warm, weathered, unmistakably rich.",
+            "stamp": "Bestseller"
+          }
+        },
+        "card_3": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "title": "The Daily Wear",
+            "description": "Anti-tarnish pieces you'll never take off.",
+            "stamp": "Everyday"
+          }
+        },
+        "card_4": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "",
+            "title": "The Bazaar Find",
+            "description": "One-of-a-kind statement pieces.",
+            "stamp": "Limited"
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3",
+        "card_4"
+      ],
       "settings": {
         "label": "The Bazaar Edit",
         "heading": "Shop by Collection",
         "subtext": "Four ways into the world of Mayaloka — pick your entry point into the treasure hunt."
-      },
-      "blocks": {
-        "card_1": { "type": "collection_card", "settings": { "title": "Heirloom Reimagined", "description": "Vintage motifs, modern proportions.", "stamp": "New" } },
-        "card_2": { "type": "collection_card", "settings": { "title": "Antique Gold", "description": "Warm, weathered, unmistakably rich.", "stamp": "Bestseller" } },
-        "card_3": { "type": "collection_card", "settings": { "title": "The Daily Wear", "description": "Anti-tarnish pieces you'll never take off.", "stamp": "Everyday" } },
-        "card_4": { "type": "collection_card", "settings": { "title": "The Bazaar Find", "description": "One-of-a-kind statement pieces.", "stamp": "Limited" } }
-      },
-      "block_order": ["card_1", "card_2", "card_3", "card_4"]
+      }
     },
     "mayaloka_philosophy": {
       "type": "mayaloka-philosophy",
@@ -58,33 +131,133 @@
     },
     "mayaloka_shop": {
       "type": "mayaloka-product-grid",
+      "blocks": {
+        "p1": {
+          "type": "placeholder_product",
+          "settings": {
+            "title": "Kintsugi Hoop Earrings",
+            "price": "₹1,450",
+            "compare_price": "",
+            "tag": "New"
+          }
+        },
+        "p2": {
+          "type": "placeholder_product",
+          "settings": {
+            "title": "Bazaar Layered Necklace",
+            "price": "₹2,100",
+            "compare_price": "₹2,600",
+            "tag": "Bestseller"
+          }
+        },
+        "p3": {
+          "type": "placeholder_product",
+          "settings": {
+            "title": "Meena Stack Ring",
+            "price": "₹980",
+            "compare_price": "",
+            "tag": "Antique"
+          }
+        },
+        "p4": {
+          "type": "placeholder_product",
+          "settings": {
+            "title": "Nostalgia Charm Bracelet",
+            "price": "₹1,750",
+            "compare_price": "",
+            "tag": ""
+          }
+        },
+        "p5": {
+          "type": "placeholder_product",
+          "settings": {
+            "title": "Old Bazaar Choker",
+            "price": "₹3,200",
+            "compare_price": "",
+            "tag": "Limited"
+          }
+        },
+        "p6": {
+          "type": "placeholder_product",
+          "settings": {
+            "title": "Signet Stamp Ring",
+            "price": "₹1,150",
+            "compare_price": "",
+            "tag": ""
+          }
+        },
+        "p7": {
+          "type": "placeholder_product",
+          "settings": {
+            "title": "Fading Signboard Studs",
+            "price": "₹890",
+            "compare_price": "",
+            "tag": "New"
+          }
+        },
+        "p8": {
+          "type": "placeholder_product",
+          "settings": {
+            "title": "Treasure Trove Anklet",
+            "price": "₹1,320",
+            "compare_price": "",
+            "tag": ""
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8"
+      ],
       "settings": {
         "label": "Treasure Finds",
         "heading": "New This Season",
         "subtext": "Handpicked, anti-tarnish, made to stay in rotation.",
+        "collection": "",
         "products_to_show": 8
-      },
-      "blocks": {
-        "p1": { "type": "placeholder_product", "settings": { "title": "Kintsugi Hoop Earrings", "price": "₹1,450", "tag": "New" } },
-        "p2": { "type": "placeholder_product", "settings": { "title": "Bazaar Layered Necklace", "price": "₹2,100", "compare_price": "₹2,600", "tag": "Bestseller" } },
-        "p3": { "type": "placeholder_product", "settings": { "title": "Meena Stack Ring", "price": "₹980", "tag": "Antique" } },
-        "p4": { "type": "placeholder_product", "settings": { "title": "Nostalgia Charm Bracelet", "price": "₹1,750" } },
-        "p5": { "type": "placeholder_product", "settings": { "title": "Old Bazaar Choker", "price": "₹3,200", "tag": "Limited" } },
-        "p6": { "type": "placeholder_product", "settings": { "title": "Signet Stamp Ring", "price": "₹1,150" } },
-        "p7": { "type": "placeholder_product", "settings": { "title": "Fading Signboard Studs", "price": "₹890", "tag": "New" } },
-        "p8": { "type": "placeholder_product", "settings": { "title": "Treasure Trove Anklet", "price": "₹1,320" } }
-      },
-      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8"]
+      }
     },
     "mayaloka_press": {
       "type": "mayaloka-press",
       "blocks": {
-        "press_1": { "type": "press_item", "settings": { "text": "as seen in Vogue India" } },
-        "press_2": { "type": "press_item", "settings": { "text": "Elle" } },
-        "press_3": { "type": "press_item", "settings": { "text": "Grazia" } },
-        "press_4": { "type": "press_item", "settings": { "text": "The Established" } }
+        "press_1": {
+          "type": "press_item",
+          "settings": {
+            "text": "as seen in Vogue India"
+          }
+        },
+        "press_2": {
+          "type": "press_item",
+          "settings": {
+            "text": "Elle"
+          }
+        },
+        "press_3": {
+          "type": "press_item",
+          "settings": {
+            "text": "Grazia"
+          }
+        },
+        "press_4": {
+          "type": "press_item",
+          "settings": {
+            "text": "The Established"
+          }
+        }
       },
-      "block_order": ["press_1", "press_2", "press_3", "press_4"]
+      "block_order": [
+        "press_1",
+        "press_2",
+        "press_3",
+        "press_4"
+      ],
+      "settings": {}
     },
     "mayaloka_newsletter": {
       "type": "mayaloka-newsletter",

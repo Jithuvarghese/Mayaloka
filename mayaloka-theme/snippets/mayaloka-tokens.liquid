@@ -1,29 +1,32 @@
 {%- doc -%}
   Design tokens for the custom Mayaloka homepage sections (mayaloka-*.liquid).
-  Colors match Demo3.png (the V3 bazaar-collage mockup) exactly.
+  Colors and typography per Mayaloka_Colour_Palette_Typography.pdf (client spec):
+  Terracotta / Powder Sky / Antique Gold / Black / White,
+  Playfair Display (headings) / Cormorant Garamond (subheadings) / Lato (body).
 {%- enddoc -%}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
-  href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:ital,wght@0,400;0,700;1,400&display=swap"
   rel="stylesheet"
 >
 <style>
   :root {
-    --mayaloka-maroon: #A6392C;
-    --mayaloka-maroon-dark: #7E2A20;
-    --mayaloka-navy: #17384A;
-    --mayaloka-navy-dark: #0F262F;
-    --mayaloka-cream: #EFE3C7;
-    --mayaloka-cream-light: #F8F1DE;
-    --mayaloka-paper: #E7D9B8;
-    --mayaloka-gold: #C08A34;
-    --mayaloka-gold-soft: #D9B675;
-    --mayaloka-ink: #241E19;
-    --mayaloka-ink-soft: #5B5148;
-    --mayaloka-font-display: var(--font-heading--family), serif;
-    --mayaloka-font-label: 'Special Elite', monospace;
-    --mayaloka-font-body: var(--font-body--family), sans-serif;
+    /* Client palette (Mayaloka_Colour_Palette_Typography.pdf) mapped onto our existing role names */
+    --mayaloka-maroon: #812B23;       /* Terracotta */
+    --mayaloka-maroon-dark: #611F19;  /* darker shade of Terracotta for hover states */
+    --mayaloka-navy: #17384A;         /* original navy, kept per feedback (client's Powder Sky didn't match) */
+    --mayaloka-navy-dark: #0F262F;    /* darker shade of navy for hover/contrast */
+    --mayaloka-cream: #FFFFFF;        /* White */
+    --mayaloka-cream-light: #FFFFFF;  /* White */
+    --mayaloka-paper: #F5F5F5;        /* near-white for alternating section backgrounds */
+    --mayaloka-gold: #D3AD4F;         /* Antique Gold */
+    --mayaloka-gold-soft: #E0C27D;    /* lighter shade of Antique Gold */
+    --mayaloka-ink: #000000;          /* Black */
+    --mayaloka-ink-soft: #4A4A4A;     /* soft black/grey for secondary text */
+    --mayaloka-font-display: 'Playfair Display', serif;
+    --mayaloka-font-label: 'Cormorant Garamond', serif;
+    --mayaloka-font-body: 'Lato', sans-serif;
   }
 
   .mayaloka-section * {
@@ -141,14 +144,41 @@
     }
   }
 
-  /* ---------- header brand overrides (match Demo3.png) ---------- */
+  /* ---------- subheading font override: Cormorant Garamond per client spec ----------
+     Shopify's font_picker doesn't expose a valid weight-500/600 handle for Cormorant
+     Garamond, so it's loaded directly via the Google Fonts link above and applied here
+     instead of through settings_data.json's type_subheading_font/type_accent_font. */
+  :root {
+    --font-subheading--family: 'Cormorant Garamond', serif !important;
+    --font-accent--family: 'Cormorant Garamond', serif !important;
+  }
+
+  /* ---------- header brand override: real logo image (ML_Primary CLR.png) ---------- */
   .header-logo {
-    --font-family: var(--font-heading--family) !important;
-    --font-style: italic !important;
-    --font-weight: 600 !important;
-    font-size: 32px !important;
-    color: var(--mayaloka-maroon) !important;
-    letter-spacing: 0.01em;
+    min-width: 220px;
+    height: 64px;
+  }
+
+  .header-logo .header-logo__image-container {
+    display: block !important;
+    width: 220px;
+    height: 64px;
+    background-image: url({{ 'mayaloka-logo.png' | asset_url }});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    font-size: 0;
+    color: transparent;
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 749px) {
+    .header-logo,
+    .header-logo .header-logo__image-container {
+      width: 150px;
+      height: 44px;
+      min-width: 150px;
+    }
   }
 
   .menu-list__link {
