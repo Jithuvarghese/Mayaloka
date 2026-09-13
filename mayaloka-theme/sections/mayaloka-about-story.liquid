@@ -18,9 +18,7 @@
         assign image = block.settings.image
         assign image_position = block.settings.image_position
       %}
-      <div
-        class="mayaloka-about__band{% cycle 'mayaloka-about__band--a', 'mayaloka-about__band--b' %}"
-      >
+      <div class="mayaloka-about__band">
         <div
           class="mayaloka-about__row mayaloka-about__row--image-{{ image_position }}"
           {{ block.shopify_attributes }}
@@ -79,14 +77,12 @@
 
   .mayaloka-about__band {
     padding: 70px 0;
-  }
-
-  .mayaloka-about__band--a {
     background: var(--mayaloka-cream-light);
+    border-bottom: 1px solid rgba(0, 0, 0, .08);
   }
 
-  .mayaloka-about__band--b {
-    background: var(--mayaloka-paper);
+  .mayaloka-about__band:last-child {
+    border-bottom: none;
   }
 
   .mayaloka-about__row {
