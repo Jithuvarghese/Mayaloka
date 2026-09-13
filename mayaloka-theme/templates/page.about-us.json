@@ -36,7 +36,58 @@
         }
       },
       "block_order": ["row_1", "row_2", "row_3"]
+    },
+    "craftsmanship": {
+      "type": "mayaloka-craftsmanship",
+      "settings": {
+        "eyebrow": "The Mayaloka Standard",
+        "heading": "What makes our craftsmanship premium?",
+        "intro": "Mayaloka is known for its unbeatable fine craftsmanship. From hand-finished settings to anti-tarnish plating, every piece is made with the finest materials and thoughtful design — offering not just jewellery, but a premium experience."
+      },
+      "blocks": {
+        "card_1": {
+          "type": "craft_card",
+          "settings": {
+            "icon": "♥",
+            "title": "Handmade with Love",
+            "description": "Each piece is meticulously handcrafted with love and attention to detail, ensuring uniqueness and superior quality in every style."
+          }
+        },
+        "card_2": {
+          "type": "craft_card",
+          "settings": {
+            "icon": "✦",
+            "title": "Detailed Design",
+            "description": "Our pieces feature intricate designs that highlight exquisite craftsmanship — a blend of traditional artistry and modern aesthetics."
+          }
+        },
+        "card_3": {
+          "type": "craft_card",
+          "settings": {
+            "icon": "◈",
+            "title": "Anti-Tarnish Plating",
+            "description": "Our jewellery is lavishly coated in premium anti-tarnish plating, providing a rich, luxurious finish that ensures lasting shine."
+          }
+        },
+        "card_4": {
+          "type": "craft_card",
+          "settings": {
+            "icon": "❖",
+            "title": "Hypoallergenic",
+            "description": "Thoughtfully designed to be gentle on your skin — pieces are hypoallergenic, offering all-day comfort without irritation."
+          }
+        },
+        "card_5": {
+          "type": "craft_card",
+          "settings": {
+            "icon": "⬥",
+            "title": "High-Quality Raw Material",
+            "description": "We use only the finest raw materials, ensuring every piece is durable, resilient, and retains its beauty over time."
+          }
+        }
+      },
+      "block_order": ["card_1", "card_2", "card_3", "card_4", "card_5"]
     }
   },
-  "order": ["about_story"]
+  "order": ["about_story", "craftsmanship"]
 }

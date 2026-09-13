@@ -19,34 +19,38 @@
         assign image_position = block.settings.image_position
       %}
       <div
-        class="mayaloka-about__row mayaloka-about__row--image-{{ image_position }}"
-        {{ block.shopify_attributes }}
+        class="mayaloka-about__band{% cycle 'mayaloka-about__band--a', 'mayaloka-about__band--b' %}"
       >
-        <div class="mayaloka-about__media">
-          {% if image != blank %}
-            {{ image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'mayaloka-about__photo' }}
-          {% else %}
-            <div class="mayaloka-about__photo mayaloka-about__photo--placeholder"></div>
-          {% endif %}
-        </div>
-        <div class="mayaloka-about__content">
-          {% if label != blank %}
-            <span class="mayaloka-label">{{ label }}</span>
-          {% endif %}
-          {% if heading != blank %}
-            <h2>{{ heading }}</h2>
-          {% endif %}
-          {% if body != blank %}
-            <div class="mayaloka-about__body">{{ body }}</div>
-          {% endif %}
-          {% if quote != blank %}
-            <blockquote class="mayaloka-about__quote">
-              &ldquo;{{ quote }}&rdquo;
-              {% if cite != blank %}
-                <cite>{{ cite }}</cite>
-              {% endif %}
-            </blockquote>
-          {% endif %}
+        <div
+          class="mayaloka-about__row mayaloka-about__row--image-{{ image_position }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="mayaloka-about__media">
+            {% if image != blank %}
+              {{ image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'mayaloka-about__photo' }}
+            {% else %}
+              <div class="mayaloka-about__photo mayaloka-about__photo--placeholder"></div>
+            {% endif %}
+          </div>
+          <div class="mayaloka-about__content">
+            {% if label != blank %}
+              <span class="mayaloka-label">{{ label }}</span>
+            {% endif %}
+            {% if heading != blank %}
+              <h2>{{ heading }}</h2>
+            {% endif %}
+            {% if body != blank %}
+              <div class="mayaloka-about__body">{{ body }}</div>
+            {% endif %}
+            {% if quote != blank %}
+              <blockquote class="mayaloka-about__quote">
+                &ldquo;{{ quote }}&rdquo;
+                {% if cite != blank %}
+                  <cite>{{ cite }}</cite>
+                {% endif %}
+              </blockquote>
+            {% endif %}
+          </div>
         </div>
       </div>
     {% endfor %}
@@ -55,14 +59,12 @@
 
 {% stylesheet %}
   .mayaloka-about {
-    padding: 90px 0 60px;
+    padding: 90px 0 0;
     background: var(--mayaloka-cream-light);
   }
 
   .mayaloka-about__wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 32px;
+    max-width: 100%;
   }
 
   .mayaloka-about__page-heading {
@@ -72,18 +74,29 @@
     text-align: center;
     color: var(--mayaloka-maroon);
     margin: 0 0 70px;
+    padding: 0 32px;
+  }
+
+  .mayaloka-about__band {
+    padding: 70px 0;
+  }
+
+  .mayaloka-about__band--a {
+    background: var(--mayaloka-cream-light);
+  }
+
+  .mayaloka-about__band--b {
+    background: var(--mayaloka-paper);
   }
 
   .mayaloka-about__row {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 56px;
     align-items: center;
-    margin-bottom: 90px;
-  }
-
-  .mayaloka-about__row:last-child {
-    margin-bottom: 0;
   }
 
   .mayaloka-about__row--image-right {
@@ -169,11 +182,14 @@
   }
 
   @media screen and (max-width: 850px) {
+    .mayaloka-about__band {
+      padding: 48px 0;
+    }
+
     .mayaloka-about__row,
     .mayaloka-about__row--image-right {
       grid-template-columns: 1fr;
       gap: 28px;
-      margin-bottom: 60px;
     }
 
     .mayaloka-about__row--image-right .mayaloka-about__media,
