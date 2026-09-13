@@ -15,8 +15,6 @@
     /* Client palette (Mayaloka_Colour_Palette_Typography.pdf) mapped onto our existing role names */
     --mayaloka-maroon: #812B23;       /* Terracotta */
     --mayaloka-maroon-dark: #611F19;  /* darker shade of Terracotta for hover states */
-    --mayaloka-navy: #17384A;         /* original navy, kept per feedback (client's Powder Sky didn't match) */
-    --mayaloka-navy-dark: #0F262F;    /* darker shade of navy for hover/contrast */
     --mayaloka-cream: #FFFFFF;        /* White */
     --mayaloka-cream-light: #FFFFFF;  /* White */
     --mayaloka-paper: #F5F5F5;        /* near-white for alternating section backgrounds */
@@ -71,23 +69,23 @@
   }
 
   .mayaloka-btn--primary {
-    background: var(--mayaloka-maroon);
-    color: var(--mayaloka-cream-light);
+    background: var(--mayaloka-gold);
+    color: var(--mayaloka-ink);
   }
 
   .mayaloka-btn--primary:hover {
-    background: var(--mayaloka-maroon-dark);
+    background: var(--mayaloka-gold-soft);
     transform: translateY(-2px);
   }
 
   .mayaloka-btn--outline {
-    border-color: var(--mayaloka-navy);
-    color: var(--mayaloka-navy);
+    border-color: var(--mayaloka-maroon);
+    color: var(--mayaloka-maroon);
     background: transparent;
   }
 
   .mayaloka-btn--outline:hover {
-    background: var(--mayaloka-navy);
+    background: var(--mayaloka-maroon);
     color: var(--mayaloka-cream-light);
     transform: translateY(-2px);
   }

@@ -1,0 +1,283 @@
+{% liquid
+  assign page_heading = section.settings.page_heading
+%}
+
+<section class="mayaloka-about">
+  <div class="mayaloka-about__wrap">
+    {% if page_heading != blank %}
+      <h1 class="mayaloka-about__page-heading">{{ page_heading }}</h1>
+    {% endif %}
+
+    {% for block in section.blocks %}
+      {% liquid
+        assign label = block.settings.label
+        assign heading = block.settings.heading
+        assign body = block.settings.body
+        assign quote = block.settings.quote
+        assign cite = block.settings.cite
+        assign image = block.settings.image
+        assign image_position = block.settings.image_position
+      %}
+      <div
+        class="mayaloka-about__row mayaloka-about__row--image-{{ image_position }}"
+        {{ block.shopify_attributes }}
+      >
+        <div class="mayaloka-about__media">
+          {% if image != blank %}
+            {{ image | image_url: width: 900 | image_tag: loading: 'lazy', class: 'mayaloka-about__photo' }}
+          {% else %}
+            <div class="mayaloka-about__photo mayaloka-about__photo--placeholder"></div>
+          {% endif %}
+        </div>
+        <div class="mayaloka-about__content">
+          {% if label != blank %}
+            <span class="mayaloka-label">{{ label }}</span>
+          {% endif %}
+          {% if heading != blank %}
+            <h2>{{ heading }}</h2>
+          {% endif %}
+          {% if body != blank %}
+            <div class="mayaloka-about__body">{{ body }}</div>
+          {% endif %}
+          {% if quote != blank %}
+            <blockquote class="mayaloka-about__quote">
+              &ldquo;{{ quote }}&rdquo;
+              {% if cite != blank %}
+                <cite>{{ cite }}</cite>
+              {% endif %}
+            </blockquote>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% stylesheet %}
+  .mayaloka-about {
+    padding: 90px 0 60px;
+    background: var(--mayaloka-cream-light);
+  }
+
+  .mayaloka-about__wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .mayaloka-about__page-heading {
+    font-family: var(--mayaloka-font-display);
+    font-weight: 600;
+    font-size: clamp(34px, 5vw, 56px);
+    text-align: center;
+    color: var(--mayaloka-maroon);
+    margin: 0 0 70px;
+  }
+
+  .mayaloka-about__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    margin-bottom: 90px;
+  }
+
+  .mayaloka-about__row:last-child {
+    margin-bottom: 0;
+  }
+
+  .mayaloka-about__row--image-right {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mayaloka-about__row--image-right .mayaloka-about__media {
+    order: 2;
+  }
+
+  .mayaloka-about__row--image-right .mayaloka-about__content {
+    order: 1;
+  }
+
+  .mayaloka-about__media {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .mayaloka-about__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .mayaloka-about__photo--placeholder {
+    background: linear-gradient(160deg, var(--mayaloka-gold-soft), var(--mayaloka-maroon) 75%);
+  }
+
+  .mayaloka-about__content .mayaloka-label {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .mayaloka-about__content h2 {
+    font-family: var(--mayaloka-font-display);
+    font-weight: 600;
+    font-size: clamp(26px, 3vw, 36px);
+    color: var(--mayaloka-ink);
+    margin: 0 0 20px;
+    line-height: 1.15;
+  }
+
+  .mayaloka-about__body {
+    color: var(--mayaloka-ink-soft);
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .mayaloka-about__body p {
+    margin: 0 0 16px;
+  }
+
+  .mayaloka-about__body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .mayaloka-about__quote {
+    margin: 0;
+    padding-left: 24px;
+    border-left: 3px solid var(--mayaloka-maroon);
+  }
+
+  .mayaloka-about__quote p,
+  .mayaloka-about__quote {
+    font-family: var(--mayaloka-font-display);
+    font-style: italic;
+    font-size: clamp(19px, 2.2vw, 24px);
+    color: var(--mayaloka-ink);
+    line-height: 1.45;
+  }
+
+  .mayaloka-about__quote cite {
+    display: block;
+    font-family: var(--mayaloka-font-label);
+    font-style: normal;
+    font-size: 13px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--mayaloka-maroon);
+    margin-top: 16px;
+  }
+
+  @media screen and (max-width: 850px) {
+    .mayaloka-about__row,
+    .mayaloka-about__row--image-right {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    .mayaloka-about__row--image-right .mayaloka-about__media,
+    .mayaloka-about__row--image-right .mayaloka-about__content {
+      order: initial;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Mayaloka About Story",
+  "tag": "section",
+  "class": "mayaloka-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_heading",
+      "label": "Page heading",
+      "default": "Our Story"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "story_row",
+      "name": "Story row",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body text"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Pull quote (optional — shown instead of/below body)"
+        },
+        {
+          "type": "text",
+          "id": "cite",
+          "label": "Quote citation"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mayaloka About Story",
+      "blocks": [
+        {
+          "type": "story_row",
+          "settings": {
+            "image_position": "left",
+            "label": "Where It All Began",
+            "heading": "A signboard, a bazaar, a beginning.",
+            "body": "<p>Mayaloka started with a single question: why does discovering jewellery have to feel like just another transaction? We wanted every piece to carry the same wonder as stumbling on a hidden stall in an old Indian bazaar — a little surprising, a little nostalgic, entirely worth keeping.</p><p>What began as a small collection of anti-tarnish pieces, inspired by the fading signboards and weathered arches of old marketplaces, has grown into a curated world where modern design meets the charm of discovery.</p>"
+          }
+        },
+        {
+          "type": "story_row",
+          "settings": {
+            "image_position": "right",
+            "label": "The Inspiration",
+            "heading": "What sparked the journey",
+            "quote": "This brand, and every piece we design, is inspired by the idea that jewellery holds memory. It should feel personal, discovered — never mass-produced.",
+            "cite": "The Mayaloka Team"
+          }
+        },
+        {
+          "type": "story_row",
+          "settings": {
+            "image_position": "left",
+            "label": "How It All Began",
+            "heading": "About the Founder",
+            "body": "<p>Mayaloka was founded with a simple belief — that the best jewellery tells a story. What started as a personal search for pieces that felt meaningful, not mass-market, turned into a brand built on discovery, craftsmanship, and a deep respect for the bazaars and signboards of old India.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

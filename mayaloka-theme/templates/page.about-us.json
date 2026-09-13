@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "about_story": {
+      "type": "mayaloka-about-story",
+      "settings": {
+        "page_heading": "Our Story"
+      },
+      "blocks": {
+        "row_1": {
+          "type": "story_row",
+          "settings": {
+            "image_position": "left",
+            "label": "Where It All Began",
+            "heading": "A signboard, a bazaar, a beginning.",
+            "body": "<p>Mayaloka started with a single question: why does discovering jewellery have to feel like just another transaction? We wanted every piece to carry the same wonder as stumbling on a hidden stall in an old Indian bazaar — a little surprising, a little nostalgic, entirely worth keeping.</p><p>What began as a small collection of anti-tarnish pieces, inspired by the fading signboards and weathered arches of old marketplaces, has grown into a curated world where modern design meets the charm of discovery.</p>"
+          }
+        },
+        "row_2": {
+          "type": "story_row",
+          "settings": {
+            "image_position": "right",
+            "label": "The Inspiration",
+            "heading": "What sparked the journey",
+            "quote": "This brand, and every piece we design, is inspired by the idea that jewellery holds memory. It should feel personal, discovered — never mass-produced.",
+            "cite": "The Mayaloka Team"
+          }
+        },
+        "row_3": {
+          "type": "story_row",
+          "settings": {
+            "image_position": "left",
+            "label": "How It All Began",
+            "heading": "About the Founder",
+            "body": "<p>Mayaloka was founded with a simple belief — that the best jewellery tells a story. What started as a personal search for pieces that felt meaningful, not mass-market, turned into a brand built on discovery, craftsmanship, and a deep respect for the bazaars and signboards of old India.</p>"
+          }
+        }
+      },
+      "block_order": ["row_1", "row_2", "row_3"]
+    }
+  },
+  "order": ["about_story"]
+}
