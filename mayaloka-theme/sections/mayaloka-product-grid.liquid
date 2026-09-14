@@ -48,23 +48,32 @@
       {% else %}
         {% for block in section.blocks %}
           {% liquid
+            assign product = block.settings.product
             assign swatch_index = forloop.index0 | modulo: 8 | plus: 1
           %}
           <a
-            href="{{ routes.all_products_collection_url }}"
+            href="{% if product != blank %}{{ product.url }}{% else %}{{ routes.all_products_collection_url }}{% endif %}"
             class="mayaloka-p-card mayaloka-p-card--s{{ swatch_index }}"
             {{ block.shopify_attributes }}
           >
             <div class="mayaloka-p-card__img">
-              <div class="mayaloka-p-card__ph"></div>
+              {% if product != blank and product.featured_image != blank %}
+                {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', class: 'mayaloka-p-card__photo' }}
+              {% else %}
+                <div class="mayaloka-p-card__ph"></div>
+              {% endif %}
               {% if block.settings.tag != blank %}
                 <span class="mayaloka-p-tag">{{ block.settings.tag }}</span>
               {% endif %}
             </div>
             <div class="mayaloka-p-card__info">
-              <h3>{{ block.settings.title }}</h3>
+              <h3>{% if product != blank %}{{ product.title }}{% else %}{{ block.settings.title }}{% endif %}</h3>
               <div class="mayaloka-p-card__price">
-                {% if block.settings.compare_price != blank %}
+                {% if product != blank and product.compare_at_price > product.price %}
+                  <s>{{ product.compare_at_price | money }}</s>{{ product.price | money }}
+                {% elsif product != blank %}
+                  {{ product.price | money }}
+                {% elsif block.settings.compare_price != blank %}
                   <s>{{ block.settings.compare_price }}</s>{{ block.settings.price }}
                 {% else %}
                   {{ block.settings.price }}
@@ -233,6 +242,7 @@
       "type": "placeholder_product",
       "name": "Placeholder product",
       "settings": [
+        { "type": "product", "id": "product", "label": "Product (optional — uses its image, title, price, and link)" },
         { "type": "text", "id": "title", "label": "Title", "default": "Kintsugi Hoop Earrings" },
         { "type": "text", "id": "price", "label": "Price", "default": "₹1,450" },
         { "type": "text", "id": "compare_price", "label": "Compare-at price (optional)" },

@@ -78,7 +78,7 @@
 
 <div class="section-background color-{{ settings.color_scheme }}"></div>
 <div
-  class="product-information section section--{{ content_width }} spacing-style color-{{ settings.color_scheme }} relative"
+  class="product-information{% if request.page_type == 'product' %} product-information--mayaloka-pdp{% endif %} section section--{{ content_width }} spacing-style color-{{ settings.color_scheme }} relative"
   style="{% render 'spacing-style', settings: settings %} --gap: {{ settings.gap }}px;"
   data-testid="product-information"
 >
@@ -115,6 +115,55 @@
 {% stylesheet %}
   .product-information {
     gap: var(--gap) 0;
+  }
+
+  .product-information--mayaloka-pdp {
+    --mayaloka-pdp-border: rgba(36, 30, 25, 0.12);
+    background: #fffdf9;
+  }
+
+  .product-information--mayaloka-pdp .product-information__media {
+    background: #f4f0ea;
+  }
+
+  .product-information--mayaloka-pdp .product-details {
+    color: #241e19;
+  }
+
+  .product-information--mayaloka-pdp .product-details > .group-block {
+    max-width: 520px;
+  }
+
+  .product-information--mayaloka-pdp .product-form-buttons {
+    align-items: stretch;
+  }
+
+  .product-information--mayaloka-pdp .product-form-buttons .quantity-selector-wrapper {
+    flex: 1 0 100%;
+  }
+
+  .product-information--mayaloka-pdp .product-form-buttons > .add-to-cart-component,
+  .product-information--mayaloka-pdp .product-form-buttons > .accelerated-checkout-block {
+    min-width: 0;
+  }
+
+  .product-information--mayaloka-pdp .product-inventory__status {
+    color: #8b302c;
+    font-size: 0.8rem;
+  }
+
+  .product-information--mayaloka-pdp .rating-wrapper {
+    color: #b58a4a;
+  }
+
+  @media screen and (max-width: 749px) {
+    .product-information--mayaloka-pdp {
+      padding-inline: 0;
+    }
+
+    .product-information--mayaloka-pdp .product-details {
+      padding-inline: 20px;
+    }
   }
 
   /* Base grid layout */

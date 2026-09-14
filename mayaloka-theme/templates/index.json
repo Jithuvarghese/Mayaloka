@@ -78,6 +78,7 @@
           "type": "collection_card",
           "settings": {
             "collection": "",
+            "product": "",
             "title": "Heirloom Reimagined",
             "description": "Vintage motifs, modern proportions.",
             "stamp": "New"
@@ -87,6 +88,7 @@
           "type": "collection_card",
           "settings": {
             "collection": "",
+            "product": "",
             "title": "Antique Gold",
             "description": "Warm, weathered, unmistakably rich.",
             "stamp": "Bestseller"
@@ -96,6 +98,7 @@
           "type": "collection_card",
           "settings": {
             "collection": "",
+            "product": "",
             "title": "The Daily Wear",
             "description": "Anti-tarnish pieces you'll never take off.",
             "stamp": "Everyday"
@@ -105,6 +108,7 @@
           "type": "collection_card",
           "settings": {
             "collection": "",
+            "product": "",
             "title": "The Bazaar Find",
             "description": "One-of-a-kind statement pieces.",
             "stamp": "Limited"
@@ -136,6 +140,7 @@
         "p1": {
           "type": "placeholder_product",
           "settings": {
+            "product": "oreo-cream-candle",
             "title": "Kintsugi Hoop Earrings",
             "price": "₹1,450",
             "compare_price": "",
@@ -145,6 +150,7 @@
         "p2": {
           "type": "placeholder_product",
           "settings": {
+            "product": "strawberry-softie",
             "title": "Bazaar Layered Necklace",
             "price": "₹2,100",
             "compare_price": "₹2,600",
@@ -154,6 +160,7 @@
         "p3": {
           "type": "placeholder_product",
           "settings": {
+            "product": "",
             "title": "Meena Stack Ring",
             "price": "₹980",
             "compare_price": "",
@@ -163,6 +170,7 @@
         "p4": {
           "type": "placeholder_product",
           "settings": {
+            "product": "",
             "title": "Nostalgia Charm Bracelet",
             "price": "₹1,750",
             "compare_price": "",
@@ -172,6 +180,7 @@
         "p5": {
           "type": "placeholder_product",
           "settings": {
+            "product": "",
             "title": "Old Bazaar Choker",
             "price": "₹3,200",
             "compare_price": "",
@@ -181,6 +190,7 @@
         "p6": {
           "type": "placeholder_product",
           "settings": {
+            "product": "",
             "title": "Signet Stamp Ring",
             "price": "₹1,150",
             "compare_price": "",
@@ -190,6 +200,7 @@
         "p7": {
           "type": "placeholder_product",
           "settings": {
+            "product": "",
             "title": "Fading Signboard Studs",
             "price": "₹890",
             "compare_price": "",
@@ -199,6 +210,7 @@
         "p8": {
           "type": "placeholder_product",
           "settings": {
+            "product": "",
             "title": "Treasure Trove Anklet",
             "price": "₹1,320",
             "compare_price": "",
