@@ -13,6 +13,7 @@
       "type": "mayaloka-hero",
       "settings": {
         "hero_image": "shopify://shop_images/landing_page_pic.png",
+        "hero_image_mobile": "shopify://shop_images/landing_page_pic_vertical.png",
         "kicker": "Modern treasures · Old Indian magic",
         "heading": "Every piece,",
         "heading_emphasis": "a treasure discovered.",
