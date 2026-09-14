@@ -9,11 +9,15 @@
   assign secondary_url = section.settings.secondary_button_url
   assign badge_text = section.settings.badge_text
   assign hero_image = section.settings.hero_image
+  assign hero_image_mobile = section.settings.hero_image_mobile
 %}
 
 <section class="mayaloka-hero{% if hero_image != blank %} mayaloka-hero--image{% endif %}">
   {% if hero_image != blank %}
-    {{ hero_image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'mayaloka-hero__image' }}
+    {{ hero_image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'mayaloka-hero__image mayaloka-hero__image--desktop' }}
+    {% if hero_image_mobile != blank %}
+      {{ hero_image_mobile | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'mayaloka-hero__image mayaloka-hero__image--mobile' }}
+    {% endif %}
     <div class="mayaloka-hero__overlay"></div>
   {% endif %}
   <div class="mayaloka-hero__wrap">
@@ -77,6 +81,10 @@
 
   .mayaloka-hero__image {
     object-fit: cover;
+  }
+
+  .mayaloka-hero__image--mobile {
+    display: none;
   }
 
   .mayaloka-hero__overlay {
@@ -207,6 +215,14 @@
       justify-content: center;
     }
 
+    .mayaloka-hero__image--desktop:has(~ .mayaloka-hero__image--mobile) {
+      display: none;
+    }
+
+    .mayaloka-hero__image--mobile {
+      display: block;
+    }
+
     .mayaloka-hero__overlay {
       background: rgba(20, 16, 13, .55);
     }
@@ -224,6 +240,12 @@
       "id": "hero_image",
       "label": "Hero image",
       "info": "This image fills the hero background behind the text."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Mobile hero image (optional)",
+      "info": "Shown on screens 749px wide or smaller. Leave empty to use the desktop hero image."
     },
     {
       "type": "text",
